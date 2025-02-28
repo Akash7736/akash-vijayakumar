@@ -4,674 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Lab Projects Portfolio</title>
-    <style>
-        /* CSS Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #4a6baf;
-            --secondary: #3d5a96;
-            --accent: #5a76b9;
-            --dark: #2c3e50;
-            --light: #f5f7fa;
-            --gray: #e1e5eb;
-            --text: #333;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background-color: var(--light);
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--primary);
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: var(--accent);
-        }
-
-        /* Layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .header-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            z-index: 1;
-        }
-
-        .header-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .header-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Navigation */
-        nav {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: var(--dark);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-
-        .nav-links a {
-            color: var(--dark);
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--dark);
-            cursor: pointer;
-        }
-
-        /* Main Content */
-        main {
-            padding: 3rem 0;
-        }
-
-        /* Sections */
-        section {
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-            text-align: center;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background-color: var(--primary);
-        }
-
-        /* Projects Grid */
-        .projects-filter {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: none;
-            border: none;
-            padding: 0.5rem 1rem;
-            margin: 0 0.5rem 0.5rem;
-            cursor: pointer;
-            font-size: 0.9rem;
-            border-radius: 20px;
-            transition: all 0.3s;
-            background-color: var(--gray);
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-image {
-            height: 200px;
-            background-color: var(--gray);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.05);
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .project-description {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .project-tag {
-            background-color: var(--gray);
-            font-size: 0.8rem;
-            padding: 0.3rem 0.6rem;
-            border-radius: 20px;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-links {
-            display: flex;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            margin-right: 1rem;
-            font-size: 0.9rem;
-            color: var(--primary);
-        }
-
-        .project-link i {
-            margin-right: 0.3rem;
-        }
-
-        /* About Section */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .about-image {
-            flex: 0 0 300px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text h3 {
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        /* Skills Section */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-        }
-
-        .skill-category {
-            flex: 1;
-            min-width: 250px;
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .skill-category h3 {
-            margin-bottom: 1rem;
-            color: var(--dark);
-            text-align: center;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-item {
-            margin-bottom: 1rem;
-        }
-
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background-color: var(--gray);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background-color: var(--primary);
-            width: 0;
-            transition: width 1s ease-out;
-        }
-
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .contact-info {
-            background-color: white;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-info h3 {
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .contact-detail i {
-            width: 30px;
-            color: var(--primary);
-            margin-right: 1rem;
-        }
-
-        .contact-form {
-            background-color: white;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-form h3 {
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid var(--gray);
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: var(--secondary);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0 1.5rem;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: background-color 0.3s;
-        }
-
-        .social-link:hover {
-            background-color: var(--primary);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
-            }
-
-            .about-image {
-                flex: 0 0 auto;
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-title {
-                font-size: 2rem;
-            }
-
-            .header-subtitle {
-                font-size: 1rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: white;
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                margin: 0;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 0.8rem 1.5rem;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
-
-        /* Add these styles to your existing CSS */
-
-/* 3D Models Section */
-#3d-models {
-    background-color: var(--light);
-    padding: 4rem 0;
-}
-
-.models-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.model-card {
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.model-card h3 {
-    padding: 1.5rem;
-    margin: 0;
-    background-color: var(--primary);
-    color: white;
-}
-
-.model-viewer {
-    height: 300px;
-    position: relative;
-    background-color: #162d47;
-}
-
-.model-description {
-    padding: 1.5rem;
-}
-
-.model-specs {
-    list-style: none;
-    padding: 0;
-    margin-top: 1rem;
-}
-
-.model-specs li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--gray);
-}
-
-.model-specs li:last-child {
-    border-bottom: none;
-}
-
-.model-controls {
-    background-color: white;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.model-controls h4 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--dark);
-}
-
-.model-controls ul {
-    list-style: none;
-    padding: 0;
-}
-
-.model-controls li {
-    padding: 0.5rem 0;
-    display: flex;
-    align-items: center;
-}
-
-.model-controls li:before {
-    content: "•";
-    color: var(--primary);
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-right: 0.5em;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .model-viewer {
-        height: 250px;
-    }
-}
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
@@ -715,55 +48,55 @@
             </div>
         </section>
 
-<!-- Add this section to your index.html file, after the projects section -->
-<section id="3d-models">
-    <div class="container">
-        <h2 class="section-title">3D Model Showcase</h2>
-        <p class="section-description">Interactive 3D models of Autonomous Surface Vehicles (ASVs) and Autonomous Underwater Vehicles (AUVs) from my research.</p>
-        
-        <div class="models-container">
-            <div class="model-card">
-                <h3>Autonomous Surface Vehicle (ASV)</h3>
-                <div id="asv-model" class="model-viewer"></div>
-                <div class="model-description">
-                    <p>This ASV was designed for environmental monitoring in shallow water environments. It features a catamaran hull design for stability and multiple sensor mounting points.</p>
-                    <ul class="model-specs">
-                        <li><strong>Dimensions:</strong> 1.5m × 0.8m × 0.4m</li>
-                        <li><strong>Weight:</strong> 35kg</li>
-                        <li><strong>Max Speed:</strong> 5 knots</li>
-                        <li><strong>Battery Life:</strong> 8 hours</li>
-                    </ul>
+        <!-- 3D Models Section -->
+        <section id="3d-models">
+            <div class="container">
+                <h2 class="section-title">3D Model Showcase</h2>
+                <p class="section-description">Interactive 3D models of Autonomous Surface Vehicles (ASVs) and Autonomous Underwater Vehicles (AUVs) from my research.</p>
+                
+                <div class="models-container">
+                    <div class="model-card">
+                        <h3>Autonomous Surface Vehicle (ASV)</h3>
+                        <div id="asv-model" class="model-viewer"></div>
+                        <div class="model-description">
+                            <p>This ASV was designed for environmental monitoring in shallow water environments. It features a catamaran hull design for stability and multiple sensor mounting points.</p>
+                            <ul class="model-specs">
+                                <li><strong>Dimensions:</strong> 1.5m × 0.8m × 0.4m</li>
+                                <li><strong>Weight:</strong> 35kg</li>
+                                <li><strong>Max Speed:</strong> 5 knots</li>
+                                <li><strong>Battery Life:</strong> 8 hours</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>Autonomous Underwater Vehicle (AUV)</h3>
+                        <div id="auv-model" class="model-viewer"></div>
+                        <div class="model-description">
+                            <p>This AUV was developed for deep-sea exploration and data collection. Its streamlined design allows for efficient movement underwater while housing multiple scientific instruments.</p>
+                            <ul class="model-specs">
+                                <li><strong>Dimensions:</strong> 2.1m × 0.5m × 0.5m</li>
+                                <li><strong>Weight:</strong> 120kg</li>
+                                <li><strong>Max Depth:</strong> 500m</li>
+                                <li><strong>Battery Life:</strong> 12 hours</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="model-controls">
+                    <div class="control-card">
+                        <h4>Viewing Controls</h4>
+                        <ul>
+                            <li>Left-click + drag: Rotate model</li>
+                            <li>Right-click + drag: Pan view</li>
+                            <li>Scroll wheel: Zoom in/out</li>
+                            <li>Double-click: Reset view</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            
-            <div class="model-card">
-                <h3>Autonomous Underwater Vehicle (AUV)</h3>
-                <div id="auv-model" class="model-viewer"></div>
-                <div class="model-description">
-                    <p>This AUV was developed for deep-sea exploration and data collection. Its streamlined design allows for efficient movement underwater while housing multiple scientific instruments.</p>
-                    <ul class="model-specs">
-                        <li><strong>Dimensions:</strong> 2.1m × 0.5m × 0.5m</li>
-                        <li><strong>Weight:</strong> 120kg</li>
-                        <li><strong>Max Depth:</strong> 500m</li>
-                        <li><strong>Battery Life:</strong> 12 hours</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="model-controls">
-            <div class="control-card">
-                <h4>Viewing Controls</h4>
-                <ul>
-                    <li>Left-click + drag: Rotate model</li>
-                    <li>Right-click + drag: Pan view</li>
-                    <li>Scroll wheel: Zoom in/out</li>
-                    <li>Double-click: Reset view</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- About Section -->
         <section id="about">
@@ -771,14 +104,13 @@
                 <h2 class="section-title">About Me</h2>
                 <div class="about-content">
                     <div class="about-image">
-                        <img src="/api/placeholder/400/320" alt="Profile Photo">
+                        <img src="/api/placeholder/400/500" alt="Profile Photo">
                     </div>
                     <div class="about-text">
-                        <h3>Hello, I'm [Your Name]</h3>
-                        <p>I am a [Your Position/Field] passionate about [Your Interests]. With a background in [Your Background], I focus on creating innovative solutions through laboratory research and experimentation.</p>
-                        <p>My work primarily involves [Brief Description of Your Work]. I'm particularly interested in [Your Specific Interests], and I'm constantly looking to expand my knowledge and skills.</p>
-                        <p>When I'm not in the lab, I enjoy [Your Hobbies/Interests]. I believe in [Your Personal Philosophy/Approach].</p>
-                        <p>Feel free to explore my projects and reach out if you'd like to collaborate!</p>
+                        <h3>Laboratory Researcher & Developer</h3>
+                        <p>I am a dedicated researcher with expertise in laboratory techniques and software development. My work focuses on creating innovative solutions for scientific problems through a combination of experimental design and computational methods.</p>
+                        <p>With a background in both scientific research and programming, I bring a unique perspective to projects that require interdisciplinary approaches. I am passionate about using technology to advance scientific understanding and create practical applications.</p>
+                        <p>My experience includes designing and conducting experiments, analyzing complex datasets, developing simulation software, and creating visualization tools for scientific data.</p>
                     </div>
                 </div>
             </div>
@@ -790,11 +122,11 @@
                 <h2 class="section-title">My Skills</h2>
                 <div class="skills-container">
                     <div class="skill-category">
-                        <h3>Technical Skills</h3>
+                        <h3>Laboratory Skills</h3>
                         <ul class="skill-list">
                             <li class="skill-item">
                                 <div class="skill-name">
-                                    <span>Programming</span>
+                                    <span>Experimental Design</span>
                                     <span>90%</span>
                                 </div>
                                 <div class="skill-bar">
@@ -803,7 +135,7 @@
                             </li>
                             <li class="skill-item">
                                 <div class="skill-name">
-                                    <span>Data Analysis</span>
+                                    <span>Sample Analysis</span>
                                     <span>85%</span>
                                 </div>
                                 <div class="skill-bar">
@@ -812,7 +144,7 @@
                             </li>
                             <li class="skill-item">
                                 <div class="skill-name">
-                                    <span>Laboratory Techniques</span>
+                                    <span>Equipment Calibration</span>
                                     <span>80%</span>
                                 </div>
                                 <div class="skill-bar">
@@ -821,30 +153,21 @@
                             </li>
                             <li class="skill-item">
                                 <div class="skill-name">
-                                    <span>Documentation</span>
-                                    <span>75%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress" data-width="75"></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Software & Tools</h3>
-                        <ul class="skill-list">
-                            <li class="skill-item">
-                                <div class="skill-name">
-                                    <span>Python</span>
+                                    <span>Safety Protocols</span>
                                     <span>95%</span>
                                 </div>
                                 <div class="skill-bar">
                                     <div class="skill-progress" data-width="95"></div>
                                 </div>
                             </li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Programming</h3>
+                        <ul class="skill-list">
                             <li class="skill-item">
                                 <div class="skill-name">
-                                    <span>MATLAB</span>
+                                    <span>Python</span>
                                     <span>85%</span>
                                 </div>
                                 <div class="skill-bar">
@@ -853,20 +176,70 @@
                             </li>
                             <li class="skill-item">
                                 <div class="skill-name">
+                                    <span>JavaScript</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80"></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-name">
                                     <span>R</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="75"></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-name">
+                                    <span>MATLAB</span>
                                     <span>70%</span>
                                 </div>
                                 <div class="skill-bar">
                                     <div class="skill-progress" data-width="70"></div>
                                 </div>
                             </li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Data Analysis</h3>
+                        <ul class="skill-list">
                             <li class="skill-item">
                                 <div class="skill-name">
-                                    <span>Git</span>
-                                    <span>80%</span>
+                                    <span>Statistical Analysis</span>
+                                    <span>90%</span>
                                 </div>
                                 <div class="skill-bar">
-                                    <div class="skill-progress" data-width="80"></div>
+                                    <div class="skill-progress" data-width="90"></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-name">
+                                    <span>Data Visualization</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85"></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-name">
+                                    <span>Machine Learning</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="75"></div>
+                                </div>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-name">
+                                    <span>Big Data Processing</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="70"></div>
                                 </div>
                             </li>
                         </ul>
@@ -957,578 +330,241 @@
     </footer>
 
     <!-- JavaScript -->
-    <script>
-        // Project Data
-        const projects = [
-            {
-                id: 1,
-                title: "Data Analysis Project",
-                description: "Analysis of experimental data using statistical methods and visualization techniques.",
-                image: "/api/placeholder/400/320",
-                category: "data-analysis",
-                tags: ["Python", "Pandas", "Matplotlib"],
-                demoLink: "#",
-                codeLink: "#"
-            },
-            {
-                id: 2,
-                title: "Simulation Software",
-                description: "A software tool for simulating laboratory conditions and predicting outcomes.",
-                image: "/api/placeholder/400/320",
-                category: "software",
-                tags: ["JavaScript", "React", "Node.js"],
-                demoLink: "#",
-                codeLink: "#"
-            },
-            {
-                id: 3,
-                title: "Chemical Reaction Experiment",
-                description: "Documentation and analysis of a series of chemical reaction experiments.",
-                image: "/api/placeholder/400/320",
-                category: "experiments",
-                tags: ["Chemistry", "Lab Equipment", "Documentation"],
-                demoLink: "#",
-                codeLink: "#"
-            },
-            {
-                id: 4,
-                title: "Molecular Structure Visualization",
-                description: "Interactive visualization tool for examining molecular structures.",
-                image: "/api/placeholder/400/320",
-                category: "software",
-                tags: ["WebGL", "Three.js", "Biochemistry"],
-                demoLink: "#",
-                codeLink: "#"
-            },
-            {
-                id: 5,
-                title: "Genetic Data Analysis",
-                description: "Analysis of genetic data to identify patterns and correlations.",
-                image: "/api/placeholder/400/320",
-                category: "data-analysis",
-                tags: ["R", "Bioinformatics", "Statistics"],
-                demoLink: "#",
-                codeLink: "#"
-            },
-            {
-                id: 6,
-                title: "Material Properties Test",
-                description: "Systematic testing of material properties under various conditions.",
-                image: "/api/placeholder/400/320",
-                category: "experiments",
-                tags: ["Physics", "Materials Science", "Testing"],
-                demoLink: "#",
-                codeLink: "#"
-            }
-        ];
+    <script src="script.js"></script>
+    <script type="module">
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.module.js';
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.132.2/examples/jsm/controls/OrbitControls.js';
+        import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.132.2/examples/jsm/loaders/GLTFLoader.js';
 
-        // DOM Elements
-        const projectsGrid = document.getElementById('projects-grid');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        const skillBars = document.querySelectorAll('.skill-progress');
-        const contactForm = document.getElementById('contact-form');
-
-        // Function to render projects
-        function renderProjects(projectsList) {
-            projectsGrid.innerHTML = '';
-            
-            projectsList.forEach(project => {
-                const projectCard = document.createElement('div');
-                projectCard.className = 'project-card';
-                
-                projectCard.innerHTML = `
-                    <div class="project-image">
-                        <img src="${project.image}" alt="${project.title}">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">${project.title}</h3>
-                        <p class="project-description">${project.description}</p>
-                        <div class="project-tags">
-                            ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-                        </div>
-                        <div class="project-links">
-                            <a href="${project.demoLink}" class="project-link"><i>🔍</i> Demo</a>
-                            <a href="${project.codeLink}" class="project-link"><i>📂</i> Code</a>
-                        </div>
-                    </div>
-                `;
-                
-                projectsGrid.appendChild(projectCard);
-            });
-        }
-
-        // Filter projects
-        function filterProjects(category) {
-            if (category === 'all') {
-                renderProjects(projects);
-            } else {
-                const filteredProjects = projects.filter(project => project.category === category);
-                renderProjects(filteredProjects);
-            }
-        }
-
-        // Initialize projects
-        renderProjects(projects);
-
-        // Event Listeners
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                const filter = button.getAttribute('data-filter');
-                filterProjects(filter);
-            });
-        });
-
-        // Mobile Menu Toggle
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Smooth scrolling for nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    navLinks.classList.remove('active');
-                }
-            });
-        });
-
-// Add this code to your main JavaScript file (before the closing script tag)
-
-// Import the ModelViewer class only after the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Check if we're on a page with the 3D models section
-    if (document.getElementById('3d-models')) {
-        // Dynamic import of Three.js and our ModelViewer class
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.textContent = `
-            import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
-            import { OrbitControls } from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/jsm/controls/OrbitControls.js';
-            import { GLTFLoader } from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/jsm/loaders/GLTFLoader.js';
-            
-            // Simplified version of the ModelViewer class
-            class ModelViewer {
-                constructor(containerId, modelOptions = {}) {
-                    this.container = document.getElementById(containerId);
-                    if (!this.container) return;
-                    
-                    this.options = Object.assign({
-                        backgroundColor: 0x162d47,
-                        modelColor: 0xFFFFFF,
-                        useCustomModel: false,
-                        modelType: 'asv',
-                        addWater: false
-                    }, modelOptions);
-                    
-                    this.init();
-                }
-                
-                init() {
-                    const width = this.container.clientWidth;
-                    const height = this.container.clientHeight;
-                    
-                    // Scene
-                    this.scene = new THREE.Scene();
-                    this.scene.background = new THREE.Color(this.options.backgroundColor);
-                    
-                    // Camera
-                    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-                    this.camera.position.set(3, 2, 3);
-                    
-                    // Renderer
-                    this.renderer = new THREE.WebGLRenderer({ antialias: true });
-                    this.renderer.setSize(width, height);
-                    this.renderer.setPixelRatio(window.devicePixelRatio);
-                    this.renderer.shadowMap.enabled = true;
-                    this.container.appendChild(this.renderer.domElement);
-                    
-                    // Lights
-                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-                    this.scene.add(ambientLight);
-                    
-                    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-                    directionalLight.position.set(5, 10, 7.5);
-                    directionalLight.castShadow = true;
-                    this.scene.add(directionalLight);
-                    
-                    // Controls
-                    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-                    this.controls.enableDamping = true;
-                    this.controls.dampingFactor = 0.05;
-                    this.controls.autoRotate = true;
-                    this.controls.autoRotateSpeed = 1.0;
-                    
-                    // Depending on whether we have a real model or not, either:
-                    if (this.options.useCustomModel && this.options.modelPath) {
-                        // 1. Load a custom GLTF model
-                        this.loadCustomModel();
-                    } else {
-                        // 2. Create a placeholder geometry based on vehicle type
-                        this.createPlaceholderModel();
-                    }
-                    
-                    // Add water if needed
-                    if (this.options.addWater) {
-                        const waterGeometry = new THREE.PlaneGeometry(20, 20);
-                        const waterMaterial = new THREE.MeshStandardMaterial({
-                            color: 0x0077be,
-                            transparent: true,
-                            opacity: 0.7,
-                            side: THREE.DoubleSide
-                        });
-                        const water = new THREE.Mesh(waterGeometry, waterMaterial);
-                        water.rotation.x = -Math.PI / 2;
-                        water.position.y = -0.5;
-                        this.scene.add(water);
-                    }
-                    
-                    // Grid helper
-                    const gridHelper = new THREE.GridHelper(10, 10);
-                    this.scene.add(gridHelper);
-                    
-                    // Handle window resize
-                    window.addEventListener('resize', () => {
-                        const newWidth = this.container.clientWidth;
-                        const newHeight = this.container.clientHeight;
-                        
-                        this.camera.aspect = newWidth / newHeight;
-                        this.camera.updateProjectionMatrix();
-                        this.renderer.setSize(newWidth, newHeight);
-                    });
-                    
-                    // Start animation loop
-                    this.animate();
-                }
-                
-                loadCustomModel() {
-                    const loader = new GLTFLoader();
-                    const loadingElem = document.createElement('div');
-                    loadingElem.style.position = 'absolute';
-                    loadingElem.style.top = '50%';
-                    loadingElem.style.left = '50%';
-                    loadingElem.style.transform = 'translate(-50%, -50%)';
-                    loadingElem.style.color = 'white';
-                    loadingElem.textContent = 'Loading model...';
-                    this.container.appendChild(loadingElem);
-                    
-                    loader.load(
-                        this.options.modelPath,
-                        (gltf) => {
-                            this.model = gltf.scene;
-                            
-                            // Center the model
-                            const box = new THREE.Box3().setFromObject(this.model);
-                            const center = box.getCenter(new THREE.Vector3());
-                            const size = box.getSize(new THREE.Vector3());
-                            
-                            const maxDim = Math.max(size.x, size.y, size.z);
-                            const scale = 2 / maxDim;
-                            this.model.scale.set(scale, scale, scale);
-                            this.model.position.sub(center.multiplyScalar(scale));
-                            
-                            this.scene.add(this.model);
-                            this.container.removeChild(loadingElem);
-                        },
-                        (xhr) => {
-                            const percentComplete = (xhr.loaded / xhr.total) * 100;
-                            loadingElem.textContent = \`Loading model... \${Math.round(percentComplete)}%\`;
-                        },
-                        (error) => {
-                            console.error('Error loading model:', error);
-                            loadingElem.textContent = 'Error loading model';
-                            // Fallback to placeholder
-                            this.createPlaceholderModel();
-                            this.container.removeChild(loadingElem);
-                        }
-                    );
-                }
-                
-                createPlaceholderModel() {
-                    let geometry;
-                    
-                    if (this.options.modelType === 'asv') {
-                        // Create a catamaran-style ASV
-                        const group = new THREE.Group();
-                        
-                        // Base platform
-                        const platformGeo = new THREE.BoxGeometry(2, 0.2, 1);
-                        const platformMat = new THREE.MeshStandardMaterial({ color: this.options.modelColor });
-                        const platform = new THREE.Mesh(platformGeo, platformMat);
-                        platform.position.y = 0.2;
-                        group.add(platform);
-                        
-                        // Two hulls
-                        const hullGeo = new THREE.CapsuleGeometry(0.2, 1.6, 4, 8);
-                        const hullMat = new THREE.MeshStandardMaterial({ color: this.options.modelColor });
-                        
-                        const leftHull = new THREE.Mesh(hullGeo, hullMat);
-                        leftHull.rotation.z = Math.PI / 2;
-                        leftHull.position.set(0, 0, -0.3);
-                        group.add(leftHull);
-                        
-                        const rightHull = new THREE.Mesh(hullGeo, hullMat);
-                        rightHull.rotation.z = Math.PI / 2;
-                        rightHull.position.set(0, 0, 0.3);
-                        group.add(rightHull);
-                        
-                        // Equipment housing
-                        const housingGeo = new THREE.BoxGeometry(0.8, 0.3, 0.6);
-                        const housingMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
-                        const housing = new THREE.Mesh(housingGeo, housingMat);
-                        housing.position.set(0, 0.35, 0);
-                        group.add(housing);
-                        
-                        // Sensor mast
-                        const mastGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.4);
-                        const mastMat = new THREE.MeshStandardMaterial({ color: 0x666666 });
-                        const mast = new THREE.Mesh(mastGeo, mastMat);
-                        mast.position.set(0, 0.7, 0);
-                        group.add(mast);
-                        
-                        // Sensor housing
-                        const sensorGeo = new THREE.SphereGeometry(0.1);
-                        const sensorMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
-                        const sensor = new THREE.Mesh(sensorGeo, sensorMat);
-                        sensor.position.set(0, 0.9, 0);
-                        group.add(sensor);
-                        
-                        this.model = group;
-                    } else {
-                        // Create a torpedo-style AUV
-                        const group = new THREE.Group();
-                        
-                        // Main body
-                        const bodyGeo = new THREE.CapsuleGeometry(0.25, 1.5, 10, 16);
-                        const bodyMat = new THREE.MeshStandardMaterial({ 
-                            color: this.options.modelColor,
-                            metalness: 0.5,
-                            roughness: 0.3
-                        });
-                        const body = new THREE.Mesh(bodyGeo, bodyMat);
-                        body.rotation.z = Math.PI / 2;
-                        group.add(body);
-                        
-                        // Fins
-                        const finGeo = new THREE.BoxGeometry(0.5, 0.05, 0.2);
-                        const finMat = new THREE.MeshStandardMaterial({ color: this.options.modelColor });
-                        
-                        // Vertical fins
-                        const vFin1 = new THREE.Mesh(finGeo, finMat);
-                        vFin1.position.set(-0.5, 0, 0);
-                        vFin1.rotation.y = Math.PI / 2;
-                        group.add(vFin1);
-                        
-                        const vFin2 = new THREE.Mesh(finGeo, finMat);
-                        vFin2.position.set(0.5, 0, 0);
-                        vFin2.rotation.y = Math.PI / 2;
-                        group.add(vFin2);
-                        
-                        // Horizontal fins
-                        const hFin1 = new THREE.Mesh(finGeo, finMat);
-                        hFin1.position.set(0, 0, -0.5);
-                        hFin1.rotation.x = Math.PI / 2;
-                        group.add(hFin1);
-                        
-                        const hFin2 = new THREE.Mesh(finGeo, finMat);
-                        hFin2.position.set(0, 0, 0.5);
-                        hFin2.rotation.x = Math.PI / 2;
-                        group.add(hFin2);
-                        
-                        // Propeller
-                        const propHub = new THREE.CylinderGeometry(0.05, 0.05, 0.1);
-                        const propMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
-                        const hub = new THREE.Mesh(propHub, propMat);
-                        hub.position.set(-0.95, 0, 0);
-                        hub.rotation.z = Math.PI / 2;
-                        group.add(hub);
-                        
-                        const propGeo = new THREE.BoxGeometry(0.1, 0.3, 0.02);
-                        
-                        for (let i = 0; i < 3; i++) {
-                            const prop = new THREE.Mesh(propGeo, propMat);
-                            prop.position.set(-1.0, 0, 0);
-                            prop.rotation.set(0, 0, (Math.PI * 2 / 3) * i);
-                            hub.add(prop);
-                        }
-                        
-                        // Sensor dome
-                        const domeGeo = new THREE.SphereGeometry(0.25, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2);
-                        const domeMat = new THREE.MeshStandardMaterial({ 
-                            color: 0x333333,
-                            transparent: true,
-                            opacity: 0.7
-                        });
-                        const dome = new THREE.Mesh(domeGeo, domeMat);
-                        dome.position.set(0.9, 0, 0);
-                        dome.rotation.y = Math.PI / 2;
-                        group.add(dome);
-                        
-                        this.model = group;
-                    }
-                    
-                    this.scene.add(this.model);
-                }
-                
-                animate() {
-                    requestAnimationFrame(this.animate.bind(this));
-                    this.controls.update();
-                    this.renderer.render(this.scene, this.camera);
-                }
-            }
-            
-            // Initialize ASV model
-            new ModelViewer('asv-model', {
+        // Initialize model viewers when DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create ASV model
+            createModelViewer('asv-model', {
                 modelType: 'asv',
                 modelColor: 0x3486eb
             });
             
-            // Initialize AUV model
-            new ModelViewer('auv-model', {
+            // Create AUV model
+            createModelViewer('auv-model', {
                 modelType: 'auv',
                 modelColor: 0xf7a440,
                 addWater: true
             });
-        `;
-        
-        document.body.appendChild(script);
-    }
-});
-        
-
-        // Animate skill bars on scroll
-        function animateSkillBars() {
-            skillBars.forEach(bar => {
-                const width = bar.getAttribute('data-width') + '%';
-                bar.style.width = width;
-            });
-        }
-
-        // Contact form submission (Demo only)
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                alert('Thank you for your message! This is a demo form and does not actually send messages.');
-                contactForm.reset();
-            });
-        }
-
-        // Scroll event for animations
-        window.addEventListener('scroll', () => {
-            const skillsSection = document.getElementById('skills');
-            if (skillsSection) {
-                const skillsSectionTop = skillsSection.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (skillsSectionTop < windowHeight * 0.8) {
-                    animateSkillBars();
-                }
-            }
         });
 
-// Continuing from previous code...
-window.addEventListener('load', () => {
-    // Check if skills section is already visible on page load
-    const skillsSection = document.getElementById('skills');
-    if (skillsSection) {
-        const skillsSectionTop = skillsSection.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        if (skillsSectionTop < windowHeight) {
-            animateSkillBars();
+        // Model viewer function
+        function createModelViewer(containerId, options = {}) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            
+            // Scene setup
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(options.backgroundColor || 0x162d47);
+            
+            // Camera setup
+            const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            camera.position.set(3, 2, 3);
+            
+            // Renderer setup
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.shadowMap.enabled = true;
+            container.appendChild(renderer.domElement);
+            
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 10, 7.5);
+            directionalLight.castShadow = true;
+            scene.add(directionalLight);
+            
+            // Controls
+            const controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.autoRotate = options.autoRotate !== false;
+            controls.autoRotateSpeed = options.autoRotateSpeed || 1.0;
+            
+            // Create model based on type
+            let model;
+            if (options.modelType === 'asv') {
+                model = createASVModel(options.modelColor || 0x3486eb);
+            } else if (options.modelType === 'auv') {
+                model = createAUVModel(options.modelColor || 0xf7a440);
+            }
+            
+            if (model) {
+                scene.add(model);
+            }
+            
+            // Add water if specified
+            if (options.addWater) {
+                const waterGeometry = new THREE.PlaneGeometry(10, 10);
+                const waterMaterial = new THREE.MeshStandardMaterial({
+                    color: 0x0077be,
+                    transparent: true,
+                    opacity: 0.7,
+                    roughness: 0.1,
+                    metalness: 0.8
+                });
+                const water = new THREE.Mesh(waterGeometry, waterMaterial);
+                water.rotation.x = -Math.PI / 2;
+                water.position.y = -1;
+                scene.add(water);
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                const newWidth = container.clientWidth;
+                const newHeight = container.clientHeight;
+                
+                camera.aspect = newWidth / newHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(newWidth, newHeight);
+            });
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            
+            animate();
         }
-    }
-});
 
-// Add scroll reveal animations
-const revealElements = document.querySelectorAll('.project-card, .about-content, .skill-category, .contact-info, .contact-form');
-
-const revealOnScroll = () => {
-    const windowHeight = window.innerHeight;
-    
-    revealElements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        
-        if (elementTop < windowHeight * 0.9) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
+        // Create ASV model
+        function createASVModel(color) {
+            const group = new THREE.Group();
+            
+            // Main hulls (catamaran style)
+            const hullGeo = new THREE.CapsuleGeometry(0.2, 1.5, 4, 8);
+            const hullMat = new THREE.MeshStandardMaterial({ color: color });
+            
+            const hull1 = new THREE.Mesh(hullGeo, hullMat);
+            hull1.position.set(0, 0, -0.4);
+            hull1.rotation.z = Math.PI / 2;
+            group.add(hull1);
+            
+            const hull2 = new THREE.Mesh(hullGeo, hullMat);
+            hull2.position.set(0, 0, 0.4);
+            hull2.rotation.z = Math.PI / 2;
+            group.add(hull2);
+            
+            // Connecting platform
+            const platformGeo = new THREE.BoxGeometry(1.5, 0.1, 1);
+            const platformMat = new THREE.MeshStandardMaterial({ color: 0xcccccc });
+            const platform = new THREE.Mesh(platformGeo, platformMat);
+            platform.position.set(0, 0.25, 0);
+            group.add(platform);
+            
+            // Equipment housing
+            const housingGeo = new THREE.BoxGeometry(0.8, 0.3, 0.6);
+            const housingMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
+            const housing = new THREE.Mesh(housingGeo, housingMat);
+            housing.position.set(0, 0.45, 0);
+            group.add(housing);
+            
+            // Antenna
+            const antennaPoleGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.5);
+            const antennaPoleMat = new THREE.MeshStandardMaterial({ color: 0x888888 });
+            const antennaPole = new THREE.Mesh(antennaPoleGeo, antennaPoleMat);
+            antennaPole.position.set(0, 0.7, 0);
+            group.add(antennaPole);
+            
+            const antennaTopGeo = new THREE.SphereGeometry(0.05);
+            const antennaTop = new THREE.Mesh(antennaTopGeo, antennaPoleMat);
+            antennaTop.position.set(0, 0.95, 0);
+            group.add(antennaTop);
+            
+            // Solar panels
+            const solarGeo = new THREE.BoxGeometry(0.6, 0.02, 0.4);
+            const solarMat = new THREE.MeshStandardMaterial({ 
+                color: 0x2244aa, 
+                metalness: 0.8,
+                roughness: 0.2
+            });
+            const solarPanel = new THREE.Mesh(solarGeo, solarMat);
+            solarPanel.position.set(-0.4, 0.45, 0);
+            group.add(solarPanel);
+            
+            return group;
         }
-    });
-};
 
-// Set initial styles for reveal elements
-revealElements.forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(20px)';
-    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-});
-
-// Check elements on load and scroll
-window.addEventListener('load', revealOnScroll);
-window.addEventListener('scroll', revealOnScroll);
-
-// Dynamic year for copyright
-const yearElement = document.querySelector('.footer-bottom p');
-if (yearElement) {
-    const currentYear = new Date().getFullYear();
-    yearElement.innerHTML = yearElement.innerHTML.replace('2025', currentYear);
-}
-
-// Add project - for future use with form or API
-function addProject(project) {
-    projects.push(project);
-    // Re-render with current filter
-    const activeFilter = document.querySelector('.filter-btn.active');
-    if (activeFilter) {
-        filterProjects(activeFilter.getAttribute('data-filter'));
-    } else {
-        renderProjects(projects);
-    }
-}
-
-// Theme toggle functionality - can be expanded later
-let darkMode = false;
-
-function toggleTheme() {
-    darkMode = !darkMode;
-    
-    if (darkMode) {
-        document.documentElement.style.setProperty('--light', '#1a1a2e');
-        document.documentElement.style.setProperty('--dark', '#e1e1e1');
-        document.documentElement.style.setProperty('--text', '#e1e1e1');
-        document.documentElement.style.setProperty('--gray', '#333344');
-    } else {
-        document.documentElement.style.setProperty('--light', '#f5f7fa');
-        document.documentElement.style.setProperty('--dark', '#2c3e50');
-        document.documentElement.style.setProperty('--text', '#333');
-        document.documentElement.style.setProperty('--gray', '#e1e5eb');
-    }
-}
-
-// Add theme toggle button (uncomment to enable)
-/*
-const nav = document.querySelector('.nav-links');
-const themeToggle = document.createElement('li');
-themeToggle.innerHTML = '<a href="#" id="theme-toggle">🌓</a>';
-nav.appendChild(themeToggle);
-
-document.getElementById('theme-toggle').addEventListener('click', function(e) {
-    e.preventDefault();
-    toggleTheme();
-});
-*/
+        // Create AUV model
+        function createAUVModel(color) {
+            const group = new THREE.Group();
+            
+            // Main body
+            const bodyGeo = new THREE.CapsuleGeometry(0.25, 1.5, 8, 16);
+            const bodyMat = new THREE.MeshStandardMaterial({ color: color });
+            const body = new THREE.Mesh(bodyGeo, bodyMat);
+            body.rotation.z = Math.PI / 2;
+            group.add(body);
+            
+            // Fins
+            const finGeo = new THREE.BoxGeometry(0.4, 0.05, 0.3);
+            const finMat = new THREE.MeshStandardMaterial({ color: color });
+            
+            // Vertical fins
+            const vFin1 = new THREE.Mesh(finGeo, finMat);
+            vFin1.position.set(-0.5, 0, 0);
+            vFin1.rotation.y = Math.PI / 2;
+            group.add(vFin1);
+            
+            const vFin2 = new THREE.Mesh(finGeo, finMat);
+            vFin2.position.set(0.5, 0, 0);
+            vFin2.rotation.y = Math.PI / 2;
+            group.add(vFin2);
+            
+            // Horizontal fins
+            const hFin1 = new THREE.Mesh(finGeo, finMat);
+            hFin1.position.set(0, 0, -0.5);
+            hFin1.rotation.x = Math.PI / 2;
+            group.add(hFin1);
+            
+            const hFin2 = new THREE.Mesh(finGeo, finMat);
+            hFin2.position.set(0, 0, 0.5);
+            hFin2.rotation.x = Math.PI / 2;
+            group.add(hFin2);
+            
+            // Propeller
+            const propHub = new THREE.CylinderGeometry(0.05, 0.05, 0.1);
+            const propMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
+            const hub = new THREE.Mesh(propHub, propMat);
+            hub.position.set(-0.95, 0, 0);
+            hub.rotation.z = Math.PI / 2;
+            group.add(hub);
+            
+            const propGeo = new THREE.BoxGeometry(0.1, 0.3, 0.02);
+            
+            for (let i = 0; i < 3; i++) {
+                const prop = new THREE.Mesh(propGeo, propMat);
+                prop.position.set(-1.0, 0, 0);
+                prop.rotation.set(0, 0, (Math.PI * 2 / 3) * i);
+                hub.add(prop);
+            }
+            
+            // Sensor dome
+            const domeGeo = new THREE.SphereGeometry(0.25, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2);
+            const domeMat = new THREE.MeshStandardMaterial({ 
+                color: 0x333333,
+                transparent: true,
+                opacity: 0.7
+            });
+            const dome = new THREE.Mesh(domeGeo, domeMat);
+            dome.position.set(0.9, 0, 0);
+            dome.rotation.y = Math.PI / 2;
+            group.add(dome);
+            
+            return group;
+        }
+    </script>
+</body>
+</html>
