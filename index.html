@@ -575,6 +575,102 @@
                 font-size: 1.8rem;
             }
         }
+
+        /* Add these styles to your existing CSS */
+
+/* 3D Models Section */
+#3d-models {
+    background-color: var(--light);
+    padding: 4rem 0;
+}
+
+.models-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.model-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.model-card h3 {
+    padding: 1.5rem;
+    margin: 0;
+    background-color: var(--primary);
+    color: white;
+}
+
+.model-viewer {
+    height: 300px;
+    position: relative;
+    background-color: #162d47;
+}
+
+.model-description {
+    padding: 1.5rem;
+}
+
+.model-specs {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.model-specs li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--gray);
+}
+
+.model-specs li:last-child {
+    border-bottom: none;
+}
+
+.model-controls {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.model-controls h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.model-controls ul {
+    list-style: none;
+    padding: 0;
+}
+
+.model-controls li {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.model-controls li:before {
+    content: "•";
+    color: var(--primary);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-right: 0.5em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .model-viewer {
+        height: 250px;
+    }
+}
     </style>
 </head>
 <body>
@@ -618,6 +714,56 @@
                 </div>
             </div>
         </section>
+
+<!-- Add this section to your index.html file, after the projects section -->
+<section id="3d-models">
+    <div class="container">
+        <h2 class="section-title">3D Model Showcase</h2>
+        <p class="section-description">Interactive 3D models of Autonomous Surface Vehicles (ASVs) and Autonomous Underwater Vehicles (AUVs) from my research.</p>
+        
+        <div class="models-container">
+            <div class="model-card">
+                <h3>Autonomous Surface Vehicle (ASV)</h3>
+                <div id="asv-model" class="model-viewer"></div>
+                <div class="model-description">
+                    <p>This ASV was designed for environmental monitoring in shallow water environments. It features a catamaran hull design for stability and multiple sensor mounting points.</p>
+                    <ul class="model-specs">
+                        <li><strong>Dimensions:</strong> 1.5m × 0.8m × 0.4m</li>
+                        <li><strong>Weight:</strong> 35kg</li>
+                        <li><strong>Max Speed:</strong> 5 knots</li>
+                        <li><strong>Battery Life:</strong> 8 hours</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="model-card">
+                <h3>Autonomous Underwater Vehicle (AUV)</h3>
+                <div id="auv-model" class="model-viewer"></div>
+                <div class="model-description">
+                    <p>This AUV was developed for deep-sea exploration and data collection. Its streamlined design allows for efficient movement underwater while housing multiple scientific instruments.</p>
+                    <ul class="model-specs">
+                        <li><strong>Dimensions:</strong> 2.1m × 0.5m × 0.5m</li>
+                        <li><strong>Weight:</strong> 120kg</li>
+                        <li><strong>Max Depth:</strong> 500m</li>
+                        <li><strong>Battery Life:</strong> 12 hours</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="model-controls">
+            <div class="control-card">
+                <h4>Viewing Controls</h4>
+                <ul>
+                    <li>Left-click + drag: Rotate model</li>
+                    <li>Right-click + drag: Pan view</li>
+                    <li>Scroll wheel: Zoom in/out</li>
+                    <li>Double-click: Reset view</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- About Section -->
         <section id="about">
@@ -961,6 +1107,309 @@
                 }
             });
         });
+
+// Add this code to your main JavaScript file (before the closing script tag)
+
+// Import the ModelViewer class only after the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if we're on a page with the 3D models section
+    if (document.getElementById('3d-models')) {
+        // Dynamic import of Three.js and our ModelViewer class
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.textContent = `
+            import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
+            import { OrbitControls } from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/jsm/controls/OrbitControls.js';
+            import { GLTFLoader } from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/jsm/loaders/GLTFLoader.js';
+            
+            // Simplified version of the ModelViewer class
+            class ModelViewer {
+                constructor(containerId, modelOptions = {}) {
+                    this.container = document.getElementById(containerId);
+                    if (!this.container) return;
+                    
+                    this.options = Object.assign({
+                        backgroundColor: 0x162d47,
+                        modelColor: 0xFFFFFF,
+                        useCustomModel: false,
+                        modelType: 'asv',
+                        addWater: false
+                    }, modelOptions);
+                    
+                    this.init();
+                }
+                
+                init() {
+                    const width = this.container.clientWidth;
+                    const height = this.container.clientHeight;
+                    
+                    // Scene
+                    this.scene = new THREE.Scene();
+                    this.scene.background = new THREE.Color(this.options.backgroundColor);
+                    
+                    // Camera
+                    this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+                    this.camera.position.set(3, 2, 3);
+                    
+                    // Renderer
+                    this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                    this.renderer.setSize(width, height);
+                    this.renderer.setPixelRatio(window.devicePixelRatio);
+                    this.renderer.shadowMap.enabled = true;
+                    this.container.appendChild(this.renderer.domElement);
+                    
+                    // Lights
+                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+                    this.scene.add(ambientLight);
+                    
+                    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+                    directionalLight.position.set(5, 10, 7.5);
+                    directionalLight.castShadow = true;
+                    this.scene.add(directionalLight);
+                    
+                    // Controls
+                    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+                    this.controls.enableDamping = true;
+                    this.controls.dampingFactor = 0.05;
+                    this.controls.autoRotate = true;
+                    this.controls.autoRotateSpeed = 1.0;
+                    
+                    // Depending on whether we have a real model or not, either:
+                    if (this.options.useCustomModel && this.options.modelPath) {
+                        // 1. Load a custom GLTF model
+                        this.loadCustomModel();
+                    } else {
+                        // 2. Create a placeholder geometry based on vehicle type
+                        this.createPlaceholderModel();
+                    }
+                    
+                    // Add water if needed
+                    if (this.options.addWater) {
+                        const waterGeometry = new THREE.PlaneGeometry(20, 20);
+                        const waterMaterial = new THREE.MeshStandardMaterial({
+                            color: 0x0077be,
+                            transparent: true,
+                            opacity: 0.7,
+                            side: THREE.DoubleSide
+                        });
+                        const water = new THREE.Mesh(waterGeometry, waterMaterial);
+                        water.rotation.x = -Math.PI / 2;
+                        water.position.y = -0.5;
+                        this.scene.add(water);
+                    }
+                    
+                    // Grid helper
+                    const gridHelper = new THREE.GridHelper(10, 10);
+                    this.scene.add(gridHelper);
+                    
+                    // Handle window resize
+                    window.addEventListener('resize', () => {
+                        const newWidth = this.container.clientWidth;
+                        const newHeight = this.container.clientHeight;
+                        
+                        this.camera.aspect = newWidth / newHeight;
+                        this.camera.updateProjectionMatrix();
+                        this.renderer.setSize(newWidth, newHeight);
+                    });
+                    
+                    // Start animation loop
+                    this.animate();
+                }
+                
+                loadCustomModel() {
+                    const loader = new GLTFLoader();
+                    const loadingElem = document.createElement('div');
+                    loadingElem.style.position = 'absolute';
+                    loadingElem.style.top = '50%';
+                    loadingElem.style.left = '50%';
+                    loadingElem.style.transform = 'translate(-50%, -50%)';
+                    loadingElem.style.color = 'white';
+                    loadingElem.textContent = 'Loading model...';
+                    this.container.appendChild(loadingElem);
+                    
+                    loader.load(
+                        this.options.modelPath,
+                        (gltf) => {
+                            this.model = gltf.scene;
+                            
+                            // Center the model
+                            const box = new THREE.Box3().setFromObject(this.model);
+                            const center = box.getCenter(new THREE.Vector3());
+                            const size = box.getSize(new THREE.Vector3());
+                            
+                            const maxDim = Math.max(size.x, size.y, size.z);
+                            const scale = 2 / maxDim;
+                            this.model.scale.set(scale, scale, scale);
+                            this.model.position.sub(center.multiplyScalar(scale));
+                            
+                            this.scene.add(this.model);
+                            this.container.removeChild(loadingElem);
+                        },
+                        (xhr) => {
+                            const percentComplete = (xhr.loaded / xhr.total) * 100;
+                            loadingElem.textContent = \`Loading model... \${Math.round(percentComplete)}%\`;
+                        },
+                        (error) => {
+                            console.error('Error loading model:', error);
+                            loadingElem.textContent = 'Error loading model';
+                            // Fallback to placeholder
+                            this.createPlaceholderModel();
+                            this.container.removeChild(loadingElem);
+                        }
+                    );
+                }
+                
+                createPlaceholderModel() {
+                    let geometry;
+                    
+                    if (this.options.modelType === 'asv') {
+                        // Create a catamaran-style ASV
+                        const group = new THREE.Group();
+                        
+                        // Base platform
+                        const platformGeo = new THREE.BoxGeometry(2, 0.2, 1);
+                        const platformMat = new THREE.MeshStandardMaterial({ color: this.options.modelColor });
+                        const platform = new THREE.Mesh(platformGeo, platformMat);
+                        platform.position.y = 0.2;
+                        group.add(platform);
+                        
+                        // Two hulls
+                        const hullGeo = new THREE.CapsuleGeometry(0.2, 1.6, 4, 8);
+                        const hullMat = new THREE.MeshStandardMaterial({ color: this.options.modelColor });
+                        
+                        const leftHull = new THREE.Mesh(hullGeo, hullMat);
+                        leftHull.rotation.z = Math.PI / 2;
+                        leftHull.position.set(0, 0, -0.3);
+                        group.add(leftHull);
+                        
+                        const rightHull = new THREE.Mesh(hullGeo, hullMat);
+                        rightHull.rotation.z = Math.PI / 2;
+                        rightHull.position.set(0, 0, 0.3);
+                        group.add(rightHull);
+                        
+                        // Equipment housing
+                        const housingGeo = new THREE.BoxGeometry(0.8, 0.3, 0.6);
+                        const housingMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
+                        const housing = new THREE.Mesh(housingGeo, housingMat);
+                        housing.position.set(0, 0.35, 0);
+                        group.add(housing);
+                        
+                        // Sensor mast
+                        const mastGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.4);
+                        const mastMat = new THREE.MeshStandardMaterial({ color: 0x666666 });
+                        const mast = new THREE.Mesh(mastGeo, mastMat);
+                        mast.position.set(0, 0.7, 0);
+                        group.add(mast);
+                        
+                        // Sensor housing
+                        const sensorGeo = new THREE.SphereGeometry(0.1);
+                        const sensorMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
+                        const sensor = new THREE.Mesh(sensorGeo, sensorMat);
+                        sensor.position.set(0, 0.9, 0);
+                        group.add(sensor);
+                        
+                        this.model = group;
+                    } else {
+                        // Create a torpedo-style AUV
+                        const group = new THREE.Group();
+                        
+                        // Main body
+                        const bodyGeo = new THREE.CapsuleGeometry(0.25, 1.5, 10, 16);
+                        const bodyMat = new THREE.MeshStandardMaterial({ 
+                            color: this.options.modelColor,
+                            metalness: 0.5,
+                            roughness: 0.3
+                        });
+                        const body = new THREE.Mesh(bodyGeo, bodyMat);
+                        body.rotation.z = Math.PI / 2;
+                        group.add(body);
+                        
+                        // Fins
+                        const finGeo = new THREE.BoxGeometry(0.5, 0.05, 0.2);
+                        const finMat = new THREE.MeshStandardMaterial({ color: this.options.modelColor });
+                        
+                        // Vertical fins
+                        const vFin1 = new THREE.Mesh(finGeo, finMat);
+                        vFin1.position.set(-0.5, 0, 0);
+                        vFin1.rotation.y = Math.PI / 2;
+                        group.add(vFin1);
+                        
+                        const vFin2 = new THREE.Mesh(finGeo, finMat);
+                        vFin2.position.set(0.5, 0, 0);
+                        vFin2.rotation.y = Math.PI / 2;
+                        group.add(vFin2);
+                        
+                        // Horizontal fins
+                        const hFin1 = new THREE.Mesh(finGeo, finMat);
+                        hFin1.position.set(0, 0, -0.5);
+                        hFin1.rotation.x = Math.PI / 2;
+                        group.add(hFin1);
+                        
+                        const hFin2 = new THREE.Mesh(finGeo, finMat);
+                        hFin2.position.set(0, 0, 0.5);
+                        hFin2.rotation.x = Math.PI / 2;
+                        group.add(hFin2);
+                        
+                        // Propeller
+                        const propHub = new THREE.CylinderGeometry(0.05, 0.05, 0.1);
+                        const propMat = new THREE.MeshStandardMaterial({ color: 0x333333 });
+                        const hub = new THREE.Mesh(propHub, propMat);
+                        hub.position.set(-0.95, 0, 0);
+                        hub.rotation.z = Math.PI / 2;
+                        group.add(hub);
+                        
+                        const propGeo = new THREE.BoxGeometry(0.1, 0.3, 0.02);
+                        
+                        for (let i = 0; i < 3; i++) {
+                            const prop = new THREE.Mesh(propGeo, propMat);
+                            prop.position.set(-1.0, 0, 0);
+                            prop.rotation.set(0, 0, (Math.PI * 2 / 3) * i);
+                            hub.add(prop);
+                        }
+                        
+                        // Sensor dome
+                        const domeGeo = new THREE.SphereGeometry(0.25, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2);
+                        const domeMat = new THREE.MeshStandardMaterial({ 
+                            color: 0x333333,
+                            transparent: true,
+                            opacity: 0.7
+                        });
+                        const dome = new THREE.Mesh(domeGeo, domeMat);
+                        dome.position.set(0.9, 0, 0);
+                        dome.rotation.y = Math.PI / 2;
+                        group.add(dome);
+                        
+                        this.model = group;
+                    }
+                    
+                    this.scene.add(this.model);
+                }
+                
+                animate() {
+                    requestAnimationFrame(this.animate.bind(this));
+                    this.controls.update();
+                    this.renderer.render(this.scene, this.camera);
+                }
+            }
+            
+            // Initialize ASV model
+            new ModelViewer('asv-model', {
+                modelType: 'asv',
+                modelColor: 0x3486eb
+            });
+            
+            // Initialize AUV model
+            new ModelViewer('auv-model', {
+                modelType: 'auv',
+                modelColor: 0xf7a440,
+                addWater: true
+            });
+        `;
+        
+        document.body.appendChild(script);
+    }
+});
+        
 
         // Animate skill bars on scroll
         function animateSkillBars() {
