@@ -2,12 +2,12 @@
 const projects = [
     {
         id: 1,
-        title: "Data Analysis Project",
-        description: "Analysis of experimental data using statistical methods and visualization techniques.",
-        image: "/api/placeholder/400/320",
+        title: "Project SOOKSHMA",
+        description: "SOOKSHMA is a mini Autonomous Surface Vehicle (ASV) developed by the Marine Autonomous Vehicles Lab (MAVLAB), IIT Madras for easy deployment for research purposes.",
+        image: "./sookshma.png",
         category: "data-analysis",
-        tags: ["Python", "Pandas", "Matplotlib"],
-        demoLink: "#",
+        tags: ["Arduino DUE", "ROS2", "Micro ROS", "Jetson nano", "SBG", "UWB"],
+        demoLink: "https://youtu.be/lidJ2G9E-nc",
         codeLink: "#"
     },
     {
