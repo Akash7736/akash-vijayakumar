@@ -10,56 +10,56 @@ const projects = [
         demoLink: "https://youtu.be/lidJ2G9E-nc",
         codeLink: "#"
     },
-    {
-        id: 2,
-        title: "Simulation Software",
-        description: "A software tool for simulating laboratory conditions and predicting outcomes.",
-        image: "/api/placeholder/400/320",
-        category: "software",
-        tags: ["JavaScript", "React", "Node.js"],
-        demoLink: "#",
-        codeLink: "#"
-    },
-    {
-        id: 3,
-        title: "Chemical Reaction Experiment",
-        description: "Documentation and analysis of a series of chemical reaction experiments.",
-        image: "/api/placeholder/400/320",
-        category: "experiments",
-        tags: ["Chemistry", "Lab Equipment", "Documentation"],
-        demoLink: "#",
-        codeLink: "#"
-    },
-    {
-        id: 4,
-        title: "Molecular Structure Visualization",
-        description: "Interactive visualization tool for examining molecular structures.",
-        image: "/api/placeholder/400/320",
-        category: "software",
-        tags: ["WebGL", "Three.js", "Biochemistry"],
-        demoLink: "#",
-        codeLink: "#"
-    },
-    {
-        id: 5,
-        title: "Genetic Data Analysis",
-        description: "Analysis of genetic data to identify patterns and correlations.",
-        image: "/api/placeholder/400/320",
-        category: "data-analysis",
-        tags: ["R", "Bioinformatics", "Statistics"],
-        demoLink: "#",
-        codeLink: "#"
-    },
-    {
-        id: 6,
-        title: "Material Properties Test",
-        description: "Systematic testing of material properties under various conditions.",
-        image: "/api/placeholder/400/320",
-        category: "experiments",
-        tags: ["Physics", "Materials Science", "Testing"],
-        demoLink: "#",
-        codeLink: "#"
-    }
+    // {
+    //     id: 2,
+    //     title: "Simulation Software",
+    //     description: "A software tool for simulating laboratory conditions and predicting outcomes.",
+    //     image: "/api/placeholder/400/320",
+    //     category: "software",
+    //     tags: ["JavaScript", "React", "Node.js"],
+    //     demoLink: "#",
+    //     codeLink: "#"
+    // },
+    // {
+    //     id: 3,
+    //     title: "Chemical Reaction Experiment",
+    //     description: "Documentation and analysis of a series of chemical reaction experiments.",
+    //     image: "/api/placeholder/400/320",
+    //     category: "experiments",
+    //     tags: ["Chemistry", "Lab Equipment", "Documentation"],
+    //     demoLink: "#",
+    //     codeLink: "#"
+    // },
+    // {
+    //     id: 4,
+    //     title: "Molecular Structure Visualization",
+    //     description: "Interactive visualization tool for examining molecular structures.",
+    //     image: "/api/placeholder/400/320",
+    //     category: "software",
+    //     tags: ["WebGL", "Three.js", "Biochemistry"],
+    //     demoLink: "#",
+    //     codeLink: "#"
+    // },
+    // {
+    //     id: 5,
+    //     title: "Genetic Data Analysis",
+    //     description: "Analysis of genetic data to identify patterns and correlations.",
+    //     image: "/api/placeholder/400/320",
+    //     category: "data-analysis",
+    //     tags: ["R", "Bioinformatics", "Statistics"],
+    //     demoLink: "#",
+    //     codeLink: "#"
+    // },
+    // {
+    //     id: 6,
+    //     title: "Material Properties Test",
+    //     description: "Systematic testing of material properties under various conditions.",
+    //     image: "/api/placeholder/400/320",
+    //     category: "experiments",
+    //     tags: ["Physics", "Materials Science", "Testing"],
+    //     demoLink: "#",
+    //     codeLink: "#"
+    // }
 ];
 
 // DOM Elements
@@ -78,6 +78,12 @@ function renderProjects(projectsList) {
         const projectCard = document.createElement('div');
         projectCard.className = 'project-card';
         
+        // Make the entire card clickable
+        projectCard.addEventListener('click', () => {
+            window.location.href = `project-details.html?id=${project.id}`;
+        });
+        projectCard.style.cursor = 'pointer';
+        
         projectCard.innerHTML = `
             <div class="project-image">
                 <img src="${project.image}" alt="${project.title}">
@@ -89,8 +95,8 @@ function renderProjects(projectsList) {
                     ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
                 </div>
                 <div class="project-links">
-                    <a href="${project.demoLink}" class="project-link"><i>🔍</i> Demo</a>
-                    <a href="${project.codeLink}" class="project-link"><i>📂</i> Code</a>
+                    <a href="${project.demoLink}" class="project-link" onclick="event.stopPropagation();"><i>🔍</i> Demo</a>
+                    <a href="${project.codeLink}" class="project-link" onclick="event.stopPropagation();"><i>📂</i> Code</a>
                 </div>
             </div>
         `;
