@@ -90,7 +90,7 @@ const publications = [
         authors: "AN Singh, A Vijayakumar, S Balasubramaniyam, A Somayajula",
         journal: "International Conference on Offshore Mechanics and Arctic Engineering",
         year: 2024,
-        link: "#" // Add the actual link if available
+        link: "https://asmedigitalcollection.asme.org/OMAE/proceedings/OMAE2024/87837/V05BT06A077/1202519" // Add the actual link if available
     },
     {
         id: 2,
@@ -98,7 +98,7 @@ const publications = [
         authors: "A Vijayakumar, A Somayajula",
         journal: "arXiv preprint arXiv:2501.09668",
         year: 2025,
-        link: "#" // Add the actual link if available
+        link: "https://arxiv.org/abs/2501.09668" // Add the actual link if available
     },
     {
         id: 3,
@@ -106,7 +106,7 @@ const publications = [
         authors: "A Vijayakumar, MA Atman, A Somayajula",
         journal: "OCEANS 2024-Halifax",
         year: 2024,
-        link: "#" // Add the actual link if available
+        link: "https://ieeexplore.ieee.org/abstract/document/10753832" // Add the actual link if available
     },
     {
         id: 4,
@@ -114,7 +114,7 @@ const publications = [
         authors: "A Vijayakumar, AN Singh, A Somayajula",
         journal: "International Conference on Offshore Mechanics and Arctic Engineering",
         year: 2024,
-        link: "#" // Add the actual link if available
+        link: "https://asmedigitalcollection.asme.org/OMAE/proceedings/OMAE2024/87820/V05AT06A069/1202464" // Add the actual link if available
     },
     {
         id: 5,
@@ -122,7 +122,7 @@ const publications = [
         authors: "V Deogaonkar, M Ibrahim M, A Vijayakumar, A Somayajula",
         journal: "International Conference on Offshore Mechanics and Arctic Engineering",
         year: 2024,
-        link: "#" // Add the actual link if available
+        link: "https://asmedigitalcollection.asme.org/OMAE/proceedings/OMAE2024/87837/V05BT06A081/1202588" // Add the actual link if available
     }
 ];
 
@@ -147,7 +147,19 @@ function renderProjects(projectsList) {
             
             // Make the entire card clickable
             projectCard.addEventListener('click', () => {
-                window.location.href = `project-details.html?id=${project.id}`;
+                switch (project.id) {
+                    case 2: // Assuming ID 2 is for Project SOOKSHMA
+                        window.location.href = 'sookshma-details.html';
+                        break;
+                    case 4: // Assuming ID 4 is for Ultra Wide Band Indoor Localization
+                        window.location.href = 'uwb-localization-details.html';
+                        break;
+                    case 5: // Assuming ID 5 is for Virtual RobotX Challenge 2023
+                        window.location.href = 'vrx-challenge-details.html';
+                        break;
+                    default:
+                        window.location.href = `project-details.html?id=${project.id}`;
+                }
             });
             projectCard.style.cursor = 'pointer';
             
