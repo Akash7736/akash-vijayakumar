@@ -2,106 +2,201 @@
 const projects = [
     {
         id: 1,
+        title: "Learning based Model Predictive Path Integral Controller for Autonomous Surface Vehicles",
+        description: "SOOKSHMA is a mini Autonomous Surface Vehicle (ASV) developed by the Marine Autonomous Vehicles Lab (MAVLAB), IIT Madras for easy deployment for research purposes.",
+        image: "./mppi.png",
+        category: "software",   
+        tags: ["Arduino DUE", "ROS2", "Micro ROS", "Jetson nano", "SBG", "UWB"],
+        demoLink: "https://youtu.be/lidJ2G9E-nc",
+        codeLink: "https://github.com/Akash7736/sookshma"
+    },
+    {
+        id: 2,
         title: "Project SOOKSHMA",
         description: "SOOKSHMA is a mini Autonomous Surface Vehicle (ASV) developed by the Marine Autonomous Vehicles Lab (MAVLAB), IIT Madras for easy deployment for research purposes.",
         image: "./sookshma.png",
         category: "data-analysis",
         tags: ["Arduino DUE", "ROS2", "Micro ROS", "Jetson nano", "SBG", "UWB"],
         demoLink: "https://youtu.be/lidJ2G9E-nc",
+        codeLink: "https://github.com/Akash7736/sookshma"
+    },
+    {
+        id: 3,
+        title: "Njord Challenge 2023",
+        description: "Njord Challenge 2023 is a competiton organized by Norwegian University of Science and Technology (NTNU). There are certain tasks such as maneuvering, docking and collision avoidance. to be performed by the autonomous surface vehicle.",
+        image: "./Njord_Challenge.jpg",
+        category: "software",
+        tags: ["Catamaran", "ROS1", "rosserial", "yolov8", "APF", "Lidar", "Stereo Vision"],
+        demoLink: "https://drive.google.com/file/d/1_r9HlQPlLPjAaWwX4GdzddVPvV2Hofsu/view",
         codeLink: "#"
     },
-    // {
-    //     id: 2,
-    //     title: "Simulation Software",
-    //     description: "A software tool for simulating laboratory conditions and predicting outcomes.",
-    //     image: "/api/placeholder/400/320",
-    //     category: "software",
-    //     tags: ["JavaScript", "React", "Node.js"],
-    //     demoLink: "#",
-    //     codeLink: "#"
-    // },
-    // {
-    //     id: 3,
-    //     title: "Chemical Reaction Experiment",
-    //     description: "Documentation and analysis of a series of chemical reaction experiments.",
-    //     image: "/api/placeholder/400/320",
-    //     category: "experiments",
-    //     tags: ["Chemistry", "Lab Equipment", "Documentation"],
-    //     demoLink: "#",
-    //     codeLink: "#"
-    // },
-    // {
-    //     id: 4,
-    //     title: "Molecular Structure Visualization",
-    //     description: "Interactive visualization tool for examining molecular structures.",
-    //     image: "/api/placeholder/400/320",
-    //     category: "software",
-    //     tags: ["WebGL", "Three.js", "Biochemistry"],
-    //     demoLink: "#",
-    //     codeLink: "#"
-    // },
-    // {
-    //     id: 5,
-    //     title: "Genetic Data Analysis",
-    //     description: "Analysis of genetic data to identify patterns and correlations.",
-    //     image: "/api/placeholder/400/320",
-    //     category: "data-analysis",
-    //     tags: ["R", "Bioinformatics", "Statistics"],
-    //     demoLink: "#",
-    //     codeLink: "#"
-    // },
-    // {
-    //     id: 6,
-    //     title: "Material Properties Test",
-    //     description: "Systematic testing of material properties under various conditions.",
-    //     image: "/api/placeholder/400/320",
-    //     category: "experiments",
-    //     tags: ["Physics", "Materials Science", "Testing"],
-    //     demoLink: "#",
-    //     codeLink: "#"
-    // }
+    {
+        id: 4,
+        title: "Ultra Wide Band Indoor Localization",
+        description: "Ultra Wide Band Indoor Localization is a project to localize the position of the autonomous surface vehicle using the Ultra Wide Band (UWB) technology.",
+        image: "./uwb.jpg",
+        category: "experiments",
+        tags: ["UWB", "ROS2", "Micro ROS", "Jetson nano", "SBG", "UWB"],
+        demoLink: "#",
+        codeLink: "https://github.com/Akash7736/UWB"
+    },
+    {
+        id: 5,
+        title: "Virtual Robotx Challenge 2023",
+        description: "Virtual Roborx Challenge 2023 is a competiton organized by Roborx, IIT Madras. There are certain tasks such as maneuvering, docking and collision avoidance. to be performed by the autonomous surface vehicle.",
+        image: "./vrx.png",
+        category: "software",
+        tags: ["Catamaran", "ROS1", "rosserial", "yolov8", "APF", "Lidar", "Stereo Vision"],
+        demoLink: "#",
+        codeLink: "#"
+    },
+    {
+        id: 6,
+        title: "OMAE Conference 2024 Singapore",
+        description: "43rd International Conference on Ocean, Offshore and Arctic Engineering - OMAE 2024 by American Society of Mechanical Engineers (ASME)",
+        image: "./omae24.jpg",
+        category: "conference",
+        tags: ["ROS2", "Micro ROS", "Jetson nano", "SBG", "UWB"],
+        demoLink: "#",
+        codeLink: "#"
+    },
+    {
+        id: 7,
+        title: "IEEE Oceans 2024 Halifax Canada",
+        description: "The OCEANS 2024 Halifax conference is for global maritime professionals to learn, innovate and lead in the protection and utilization of the world's largest natural resource – our OCEANS..",
+        image: "./ieeeoceans24.png",
+        category: "conference",
+        tags: ["ROS2", "Micro ROS", "Jetson nano", "SBG", "UWB"],
+        demoLink: "#",
+        codeLink: "#"
+    },
+    {
+        id: 8,
+        title: "IEEE Underwater Technology Conference 2025 Taiwan",
+        description: "The Underwater Technology (UT) symposium, one of the IEEE Oceanic Engineering Society's premier events, has been at the forefront of technological advancements in the underwater field for the past 27 years.",
+        image: "./ut25.jpeg",
+        category: "conference",
+        tags: ["ROS2", "Micro ROS", "Jetson nano", "SBG", "UWB"],
+        demoLink: "#",
+        codeLink: "#"
+    }
+];
+
+// Publication Data
+const publications = [
+    {
+        id: 1,
+        title: "Deep Reinforcement Learning for Ship Collision Avoidance and Path Tracking",
+        authors: "AN Singh, A Vijayakumar, S Balasubramaniyam, A Somayajula",
+        journal: "International Conference on Offshore Mechanics and Arctic Engineering",
+        year: 2024,
+        link: "#" // Add the actual link if available
+    },
+    {
+        id: 2,
+        title: "Model Predictive Path Integral Docking of Fully Actuated Surface Vessel",
+        authors: "A Vijayakumar, A Somayajula",
+        journal: "arXiv preprint arXiv:2501.09668",
+        year: 2025,
+        link: "#" // Add the actual link if available
+    },
+    {
+        id: 3,
+        title: "Learning Autonomous Docking Operation of Fully Actuated Autonomous Surface Vessel from Expert data",
+        authors: "A Vijayakumar, MA Atman, A Somayajula",
+        journal: "OCEANS 2024-Halifax",
+        year: 2024,
+        link: "#" // Add the actual link if available
+    },
+    {
+        id: 4,
+        title: "Extraction of Ship Collision Avoidance Patterns From AIS Data",
+        authors: "A Vijayakumar, AN Singh, A Somayajula",
+        journal: "International Conference on Offshore Mechanics and Arctic Engineering",
+        year: 2024,
+        link: "#" // Add the actual link if available
+    },
+    {
+        id: 5,
+        title: "Data Driven Identification and Model Predictive Control for a Catamaran Surface Vessel",
+        authors: "V Deogaonkar, M Ibrahim M, A Vijayakumar, A Somayajula",
+        journal: "International Conference on Offshore Mechanics and Arctic Engineering",
+        year: 2024,
+        link: "#" // Add the actual link if available
+    }
 ];
 
 // DOM Elements
 const projectsGrid = document.getElementById('projects-grid');
+const conferencesGrid = document.getElementById('conferences-grid');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 const skillBars = document.querySelectorAll('.skill-progress');
 const contactForm = document.getElementById('contact-form');
+const publicationsGrid = document.getElementById('publications-grid');
 
 // Function to render projects
 function renderProjects(projectsList) {
     projectsGrid.innerHTML = '';
     
     projectsList.forEach(project => {
-        const projectCard = document.createElement('div');
-        projectCard.className = 'project-card';
-        
-        // Make the entire card clickable
-        projectCard.addEventListener('click', () => {
-            window.location.href = `project-details.html?id=${project.id}`;
-        });
-        projectCard.style.cursor = 'pointer';
-        
-        projectCard.innerHTML = `
-            <div class="project-image">
-                <img src="${project.image}" alt="${project.title}">
-            </div>
-            <div class="project-content">
-                <h3 class="project-title">${project.title}</h3>
-                <p class="project-description">${project.description}</p>
-                <div class="project-tags">
-                    ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+        if (project.category !== 'conference') {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'project-card';
+            
+            // Make the entire card clickable
+            projectCard.addEventListener('click', () => {
+                window.location.href = `project-details.html?id=${project.id}`;
+            });
+            projectCard.style.cursor = 'pointer';
+            
+            projectCard.innerHTML = `
+                <div class="project-image">
+                    <img src="${project.image}" alt="${project.title}">
                 </div>
-                <div class="project-links">
-                    <a href="${project.demoLink}" class="project-link" onclick="event.stopPropagation();"><i>🔍</i> Demo</a>
-                    <a href="${project.codeLink}" class="project-link" onclick="event.stopPropagation();"><i>📂</i> Code</a>
+                <div class="project-content">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="project-links">
+                        <a href="${project.demoLink}" class="project-link" onclick="event.stopPropagation();"><i>🔍</i> Demo</a>
+                        <a href="${project.codeLink}" class="project-link" onclick="event.stopPropagation();"><i>📂</i> Code</a>
+                    </div>
                 </div>
-            </div>
-        `;
-        
-        projectsGrid.appendChild(projectCard);
+            `;
+            
+            projectsGrid.appendChild(projectCard);
+        }
+    });
+}
+
+// Function to render conferences
+function renderConferences(conferencesList) {
+    conferencesGrid.innerHTML = '';
+    
+    conferencesList.forEach(conference => {
+        if (conference.category === 'conference') {
+            const conferenceCard = document.createElement('div');
+            conferenceCard.className = 'conference-card';
+            
+            conferenceCard.innerHTML = `
+                <div class="conference-image">
+                    <img src="${conference.image}" alt="${conference.title}">
+                </div>
+                <div class="conference-content">
+                    <h3 class="conference-title">${conference.title}</h3>
+                    <p class="conference-description">${conference.description}</p>
+                    <div class="conference-tags">
+                        ${conference.tags.map(tag => `<span class="conference-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            
+            conferencesGrid.appendChild(conferenceCard);
+        }
     });
 }
 
@@ -115,8 +210,31 @@ function filterProjects(category) {
     }
 }
 
-// Initialize projects
+// Function to render publications
+function renderPublications(publicationsList) {
+    publicationsGrid.innerHTML = '';
+    
+    publicationsList.forEach(publication => {
+        const publicationCard = document.createElement('div');
+        publicationCard.className = 'publication-card';
+        
+        publicationCard.innerHTML = `
+            <div class="publication-content">
+                <h3 class="publication-title">${publication.title}</h3>
+                <p class="publication-authors">${publication.authors}</p>
+                <p class="publication-journal">${publication.journal}, ${publication.year}</p>
+                <a href="${publication.link}" class="publication-link" target="_blank">Read More</a>
+            </div>
+        `;
+        
+        publicationsGrid.appendChild(publicationCard);
+    });
+}
+
+// Initialize projects and conferences
 renderProjects(projects);
+renderConferences(projects);
+renderPublications(publications);
 
 // Event Listeners
 filterButtons.forEach(button => {
