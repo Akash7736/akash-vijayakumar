@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docking of Autonomous Surface Vehicles</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-details-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .project-title-section {
+            flex: 1;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .project-image-large {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-item {
+            background-color: var(--gray);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .project-section {
+            margin-bottom: 2rem;
+        }
+        
+        .project-section h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .task-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            margin: 1rem 0;
+            max-height: none;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container container">
+            <a href="index.html" class="logo">Portfolio</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Details -->
+    <main>
+        <div class="container">
+            <div class="project-details-container">
+                <h1>Docking of Autonomous Surface Vehicles</h1>
+                <img src="./dock_asv.png" alt="Docking ASV Image" class="project-image-large">
+                
+                <section class="project-section">
+                    <h2>Project Overview</h2>
+                    <p>This project focuses on developing autonomous docking capabilities for surface vessels. Docking is one of the most challenging maneuvers for autonomous vessels due to the precision required and the complex environmental factors involved. Our approach combines learning-based methods with model predictive control to achieve robust and efficient docking operations.</p>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Simulation Environment</h2>
+                    <img src="./simenv.v01.png" alt="Simulation Environment" class="task-image">
+                    
+                    <p>The docking simulations were conducted using a PyBullet-based simulation environment, which provides physics-based modeling and visualization capabilities. The environment incorporates several key features designed to replicate realistic vessel docking scenarios.</p>
+                    
+                    <h3>Vessel Dynamics</h3>
+                    <p>The surface vessel is modeled as a fully actuated rigid body operating in 3 degrees of freedom (surge, sway, and yaw). The state vector is defined as:</p>
+                    
+                    <div class="equation">
+                        <p>\[ \mathbf{q}_i = \begin{bmatrix} \mathbf{\eta}_i^T & \mathbf{\nu}_i^T \end{bmatrix}^T = \begin{bmatrix} x_i & y_i & \psi_i & u_i & v_i & r_i \end{bmatrix}^T \]</p>
+                    </div>
+                    
+                    <p>where the state vector is a combination of the 2D pose</p>
+                    
+                    <div class="equation">
+                        <p>\[ \eta = \begin{bmatrix} x & y & \psi \end{bmatrix}^T \]</p>
+                    </div>
+                    
+                    <p>and the velocity vector</p>
+                    
+                    <div class="equation">
+                        <p>\[ \nu = \begin{bmatrix} u & v & r \end{bmatrix}^T \]</p>
+                    </div>
+                    
+                    <p>in body-fixed coordinates.</p>
+                    
+                    <p>The dynamic model of the vessel used in running simulations is given by:</p>
+                    
+                    <div class="equation">
+                        <p>\[ M\dot{\nu} + C_{RB}(\nu)\nu + N\nu = \tau_c + \tau_d \]</p>
+                        <p>\[ \dot{\eta} = J(\psi)\nu \]</p>
+                    </div>
+                    
+                    <p>The mass matrix \( M \), the Coriolis matrix \( C_{RB}(\nu) \), and the damping matrix \( N \) include the system parameters. The input vector is denoted by \( \tau_c \), and the disturbance vector is denoted by \( \tau_d \). The disturbance vector \( \tau_d \) is set to zero for simplicity for this study. The kinematic equation describes the transformation of the body-fixed velocity into local coordinates as a function of the rotation matrix \( J(\psi) \). The action input vector has 4 thrust values which helps the vessel to move in all 3 degrees of freedom.</p>
+                    
+                    <h3>Physical Environment</h3>
+                    <p>The simulation environment consists of a water surface rendered with realistic textures and a docking bay structure. The docking bay is modeled with precise physical dimensions:</p>
+                    <ul>
+                        <li>Dock width: 4 meters</li>
+                        <li>Wall thickness: 0.1 meters</li>
+                        <li>Safety clearance zone: 3.5 meters from center</li>
+                    </ul>
+                    
+                    <p>The dock structure includes three primary walls forming a U-shaped berthing area, with wall positions precisely defined relative to the dock center position (10.0, -5.0, 0.0) in the global coordinate frame.</p>
+                    
+                    <h3>Sensor Simulation</h3>
+                    <p>The simulation includes realistic sensor modeling of 2D LiDAR System. A 360-degree LiDAR sensor is simulated with the following specifications:</p>
+                    <ul>
+                        <li>Angular resolution: 0.1 degrees (3600 rays)</li>
+                        <li>Maximum range: 50 meters</li>
+                        <li>Update rate: 5 Hz</li>
+                        <li>Gaussian noise with σ = 0.1 meters</li>
+                    </ul>
+                    
+                    <h3>Collision Detection</h3>
+                    <p>The environment implements a collision detection system that monitors:</p>
+                    <ul>
+                        <li>Contact points between vessel corners and dock walls</li>
+                        <li>Dynamic safety zones with critical (0.25m) and warning (0.5m) thresholds</li>
+                        <li>Real-time collision state feedback for termination conditions</li>
+                    </ul>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Technical Implementation</h2>
+                    <p>Our docking system was implemented using Model Predictive Path Integral (MPPI) control in a fully actuated surface vessel. The implementation consists of several key components:</p>
+                    
+                    <h3>Environment Simulation</h3>
+                    <p>We developed a custom environment in PyBullet simulator that includes:</p>
+                    <ul>
+                        <li>Realistic water dynamics and vessel physics</li>
+                        <li>Configurable dock structures with various geometries</li>
+                        <li>Simulated 2D LiDAR sensor for dock detection</li>
+                        <li>Environmental disturbances (wind, currents) for robustness testing</li>
+                    </ul>
+                    
+                    <h3>Dock Detection and Segmentation</h3>
+                    <p>The dock detection pipeline processes LiDAR point clouds through several stages:</p>
+                    <ol>
+                        <li><strong>Clustering:</strong> DBSCAN (Density-Based Spatial Clustering of Applications with Noise) algorithm groups LiDAR points into meaningful clusters</li>
+                        <li><strong>Segmentation:</strong> Gaussian Mixture Models (GMM) separate the dock structure from other environmental features</li>
+                        <li><strong>Wall Orientation:</strong> RANSAC (Random Sample Consensus) algorithm identifies the three dock walls and calculates their orientations</li>
+                        <li><strong>Docking Point Estimation:</strong> The intersection of walls is used to determine optimal docking points</li>
+                    </ol>
+                    
+                    <h3>MPPI Cost Function for Docking</h3>
+                    <p>The MPPI controller uses a specialized cost function designed specifically for the docking task:</p>
+                    
+                    <div class="equation">
+                        <p>\begin{equation}
+                        \begin{split}
+                            C_{\text{total}} = & C_{\text{dock\_goal}} + C_{\text{velocity}} + C_{\text{dock\_heading}} + \\
+                            & C_{\text{goal\_ori}} + C_{\text{dock\_clear}} + C_{\text{dock\_entrance}}.
+                        \end{split}
+                        \end{equation}</p>
+                    </div>
+                    
+                    <p>Each component of this cost function serves a specific purpose:</p>
+                    <ul>
+                        <li><strong>Dock Goal Cost (C<sub>dock_goal</sub>):</strong> Penalizes distance from the vessel to the target docking position</li>
+                        <li><strong>Velocity Cost (C<sub>velocity</sub>):</strong> Ensures appropriate approach velocity, slowing down as the vessel nears the dock</li>
+                        <li><strong>Dock Heading Cost (C<sub>dock_heading</sub>):</strong> Aligns the vessel with the dock orientation</li>
+                        <li><strong>Goal Orientation Cost (C<sub>goal_ori</sub>):</strong> Ensures the vessel reaches the final docking position with the correct orientation</li>
+                        <li><strong>Dock Clearance Cost (C<sub>dock_clear</sub>):</strong> Prevents collisions with the dock walls during approach</li>
+                        <li><strong>Dock Entrance Cost (C<sub>dock_entrance</sub>):</strong> Guides the vessel through the entrance of the dock in a controlled manner</li>
+                    </ul>
+                    
+                    <h3>Controller Implementation</h3>
+                    <p>The MPPI controller generates optimal trajectories by:</p>
+                    <ol>
+                        <li>Sampling thousands of potential control sequences</li>
+                        <li>Simulating the resulting trajectories</li>
+                        <li>Evaluating each trajectory using the cost function</li>
+                        <li>Computing a weighted average of control inputs, favoring lower-cost trajectories</li>
+                        <li>Applying the first control input and repeating the process at the next time step</li>
+                    </ol>
+                    
+                    <!-- <img src="./docking_trajectory.png" alt="Docking Trajectory Visualization" class="task-image"> -->
+                </section>
+                
+                <section class="project-section">
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li>Robust to environmental disturbances (wind, current, waves)</li>
+                        <li>Adaptive to different dock configurations</li>
+                        <li>Real-time performance on embedded hardware</li>
+                        <li>Safety mechanisms to prevent collisions</li>
+                        <li>Integration with existing navigation systems</li>
+                    </ul>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Technical Specifications</h2>
+                    <ul>
+                        <li>Platform: Catamaran ASV with X-configuration thrusters</li>
+                        <li>Sensors: LiDAR, Stereo Camera, IMU, GPS</li>
+                        <li>Computing: NVIDIA Jetson Xavier NX</li>
+                        <li>Software: ROS2, PyTorch, OpenCV</li>
+                    </ul>
+                </section>
+                
+                <!-- <h2>Project Gallery</h2> -->
+                <!-- <div class="project-gallery"> -->
+                    <!-- <img src="./path.png" alt="Path Visualization" style="width: 100%; height: auto; max-height: none; object-fit: contain; border-radius: 4px; margin-bottom: 2rem;"> -->
+                    <!-- <img src="./gallery2.jpg" alt="Gallery Image 2" class="gallery-image"> -->
+                    <!-- Add more images as needed -->
+                <!-- </div> -->
+                
+                <h2>Publications</h2>
+                <ul>
+                    <li>
+                        <strong>Learning Autonomous Docking Operation of Fully Actuated Autonomous Surface Vessel from Expert data</strong><br>
+                        A Vijayakumar, MA Atman, A Somayajula<br>
+                        OCEANS 2024-Halifax, 1-5
+                    </li>
+                    <li>
+                        <strong>Model Predictive Path Integral Docking of Fully Actuated Surface Vessel</strong><br>
+                        A Vijayakumar, A Somayajula<br>
+                        arXiv preprint arXiv:2501.09668
+                    </li>
+                </ul>
+                
+                <h2>Links</h2>
+                <p>
+                    <a href="https://youtu.be/example-docking-video" class="btn" target="_blank">View Demo</a>
+                    <a href="https://github.com/Akash7736/asv-docking" class="btn" target="_blank">View Code</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>A portfolio showcasing my laboratory projects and technical skills.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#projects">Projects</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#skills">Skills</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/Akash7736">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/akash-vijayakumar/">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/akashvnkm">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Akash Vijayakumar. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="project-details.js"></script>
+</body>
+</html> 

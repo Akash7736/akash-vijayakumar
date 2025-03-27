@@ -79,6 +79,27 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        
+        .abstract {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+        }
+        
+        .team-members {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .task-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            margin: 1rem 0;
+            max-height: none;
+        }
     </style>
 </head>
 <body>
@@ -100,27 +121,86 @@
     <main>
         <div class="container">
             <div class="project-details-container">
-                <h1>Njord Challenge 2023</h1>
+                <h1>NJORD CHALLENGE 2023 - Technical Report</h1>
+                <h2>Team Aritra, IIT Madras</h2>
+                <p class="team-members">Team Members: Akash Vijayakumar, Mohammed Ibrahim, Amar Nath Singh, Rakshin Ramesh</p>
+                
                 <img src="./Njord_Challenge.jpg" alt="Njord Challenge Image" class="project-image-large">
-                <p>Njord Challenge 2023 is a competition organized by the Norwegian University of Science and Technology (NTNU). The challenge involves tasks such as maneuvering, docking, and collision avoidance to be performed by the autonomous surface vehicle.</p>
                 
-                <h2>Project Overview</h2>
-                <p>This project focuses on developing an autonomous surface vehicle capable of performing complex tasks in a competitive environment. The vehicle is equipped with advanced sensors and control systems to navigate and complete tasks efficiently.</p>
+                <div class="abstract">
+                    <h2>Team Aritra</h2>
+                    <p>Aritra is a marine autonomy competition team from MAV LABS, Dept. of Ocean Engineering, IIT Madras. Our ASV is a catamaran autonomous boat manufactured in Central Fabrication Facility in IIT Madras by Aritra Team in order to participate in Njord Challenge 2023. This technical design report contains the plan, process, and design properties during the preparation.</p>
+                </div>
                 
-                <h2>Key Features</h2>
-                <ul>
-                    <li>Advanced maneuvering and docking capabilities</li>
-                    <li>Collision avoidance using Lidar and Stereo Vision</li>
-                    <li>Integration with ROS1 and rosserial for control</li>
-                    <li>Utilization of yolov8 for object detection</li>
-                </ul>
+                <section class="project-section">
+                    <h2>1. About IIT Madras</h2>
+                    <p>Indian Institute of Technology Madras is known both nationally and internationally for excellence in technical education, basic and applied research, innovation, entrepreneurship and industrial consultancy. The Institute is proud to bear the laureate of being No.1 engineering university in India. More recently, IIT Madras has been given the title of Institute of Eminence.</p>
+                    
+                    <h3>MAV LAB</h3>
+                    <p>One of the finest laboratories in IIT Madras innovating in the field of marine autonomy from 2019. Major works include Hydrodynamic Response Analysis tool (Hydra) for prediction of dynamic motion of ships, Data driven control of ASV with Deep Reinforcement Learning for path following and obstacle avoidance, and System identification of Maneuvering Model.</p>
+                </section>
                 
-                <h2>Technical Specifications</h2>
-                <ul>
-                    <li>Platform: Catamaran</li>
-                    <li>Sensors: Lidar, Stereo Vision</li>
-                    <li>Software: ROS1, rosserial, yolov8</li>
-                </ul>
+                <section class="project-section">
+                    <h2>2. Journey to the Njord Competition</h2>
+                    <p>Our journey began on August 7th, departing from Chennai Airport. We traveled through Frankfurt to Oslo and then Trondheim. The preparation involved unpacking equipment, assembling our ASV, and extensive testing in local water bodies.</p>
+                    
+                    <p>Highlights of our journey included:</p>
+                    <ul>
+                        <li>Team presentation on August 14th</li>
+                        <li>Extensive testing until late evening (benefiting from Norway's late sunset)</li>
+                        <li>Networking with international teams</li>
+                    </ul>
+                </section>
+                
+                <section class="project-section">
+                    <h2>3. Competition Days Overview</h2>
+                    <h3>Day 1: Maneuvering Tasks</h3>
+                    <img src="./man_task_njord.png" alt="Maneuvering Tasks" class="task-image">
+                    <p>We encountered a challenge with our lidar system overheating but managed to perform well in subsequent sub-tasks. Despite initial setbacks, we earned the highest score in one sub-task.</p>
+                    
+                    <h3>Day 2: The Docking Challenge</h3>
+                    <img src="./docking_task_njord.png" alt="Docking Challenge" class="task-image">
+                    <p>Faced with discharged batteries and challenging weather conditions, we partially completed the docking challenge.</p>
+                    
+                    <h3>Day 3: Obstacle Avoidance</h3>
+                    <img src="./col_avo_njord.png" alt="Obstacle Avoidance" class="task-image">
+                    <p>With support from the Turkish team (who provided spare batteries) and improved conditions, we emerged as the top-performing team in the obstacle avoidance challenge.</p>
+                </section>
+                
+                <section class="project-section">
+                    <h2>4. Prize Ceremony</h2>
+                    <p>Our achievements at the Njord Challenge were remarkable:</p>
+                    <ul>
+                        <li>Third place overall</li>
+                        <li>Sustainability Award</li>
+                        <li>Prize of 10,000 NOK and a trophy</li>
+                    </ul>
+                    <p>First place went to Turkey, with Portugal securing second place.</p>
+                </section>
+                
+                <section class="project-section">
+                    <h2>5. Design Strategy Highlights</h2>
+                    <ul>
+                        <li>Catamaran design with flat-bottom displacement hull</li>
+                        <li>Four thrusters in X configuration for maximum maneuverability</li>
+                        <li>Modular bracket system for easy maintenance</li>
+                        <li>Advanced electrical system with efficient power distribution</li>
+                        <li>Custom Kalman filter for precise localization</li>
+                        <li>YOLO V8 Nano for buoy detection</li>
+                    </ul>
+                </section>
+                
+                <section class="project-section">
+                    <h2>6. Conclusion</h2>
+                    <p>The Njord Autonomy Challenge was a transformative experience that taught us invaluable lessons about marine autonomous systems, international collaboration, and real-world technological challenges.</p>
+                    
+                    <p>Our future plans include participating in the Virtual Robotics Competition by RoboNation and RobotX, continuing to push the boundaries of marine autonomy.</p>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Acknowledgements</h2>
+                    <p>Special thanks to the Royal Norwegian Embassy in New Delhi, IEEE OES Madras Chapter, MAV LABS, DOE IIT Madras, and Dr. Abhilash Sharma Somayajula for their support.</p>
+                </section>
                 
                 <h2>Project Gallery</h2>
                 <div class="project-gallery">

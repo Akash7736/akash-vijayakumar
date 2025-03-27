@@ -79,6 +79,30 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        
+        .equation {
+            background-color: #f4f4f4;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #666;
+            border-radius: 4px;
+        }
+        
+        .description {
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+        }
+        
+        .large-gallery-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            max-height: none;
+        }
     </style>
 </head>
 <body>
@@ -102,11 +126,63 @@
             <div class="project-details-container">
                 <h1>Learning based Model Predictive Path Integral Controller for Autonomous Surface Vehicles</h1>
                 <img src="./mppi.png" alt="Project Image" class="project-image-large">
-                <p>SOOKSHMA is a mini Autonomous Surface Vehicle (ASV) developed by the Marine Autonomous Vehicles Lab (MAVLAB), IIT Madras for easy deployment for research purposes.</p>
+                <p>Model Predictive Path Integral (MPPI) control is an optimization-based approach for trajectory planning and control in Autonomous Surface Vessels (ASVs). It leverages a sampling-based stochastic optimization framework to evaluate multiple control trajectories in parallel, selecting the one that minimizes a predefined cost function while considering vessel dynamics and environmental constraints. </p>
                 
                 <h2>Project Overview</h2>
-                <p>This project involves the development of a learning-based Model Predictive Path Integral (MPPI) controller for autonomous surface vehicles. The controller is designed to optimize the path and control inputs of the vehicle in real-time, ensuring efficient and safe navigation in dynamic environments.</p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/lidJ2G9E-nc?si=8888888888888888" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <!-- <img src="./vessel_deploy.jpeg" alt="Project Overview" class="project-image-large"> -->
+                <p>In this project, I have developed a learning-based Model Predictive Path Integral (MPPI) controller for autonomous surface vehicles. The controller is designed to optimize the path and control inputs of the vehicle in real-time, ensuring efficient and safe navigation in dynamic environments The algorithm has been tested for waypoint tracking task in real vessel in wave basin.</p>
+                <p>Unlike traditional model predictive control (MPC), MPPI does not require solving complex constrained optimization problems explicitly, making it well-suited for real-time applications. Its inherent ability to handle nonlinear dynamics and disturbances makes MPPI highly effective for ASV docking, station-keeping, and obstacle avoidance in dynamic marine environments.</p>
+                <table border="1" style="width:100%; border-collapse: collapse; text-align: left;">
+                    <tr>
+                        <th style="padding: 10px;">Feature</th>
+                        <th style="padding: 10px;">Model Predictive Control (MPC)</th>
+                        <th style="padding: 10px;">Model Predictive Path Integral (MPPI)</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>Optimization Approach</strong></td>
+                        <td style="padding: 10px;">Solves constrained optimization problems using quadratic programming or nonlinear solvers</td>
+                        <td style="padding: 10px;">Uses sampling-based stochastic optimization for trajectory selection</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>Computational Complexity</strong></td>
+                        <td style="padding: 10px;">High, especially with constraints and nonlinear dynamics</td>
+                        <td style="padding: 10px;">Lower due to parallel sampling and GPU acceleration</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>Handling of Nonlinear Dynamics</strong></td>
+                        <td style="padding: 10px;">Requires linearization or nonlinear solvers, making it complex</td>
+                        <td style="padding: 10px;">Naturally handles nonlinear and stochastic dynamics</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>Real-Time Applicability</strong></td>
+                        <td style="padding: 10px;">Computationally expensive, may struggle in real-time applications</td>
+                        <td style="padding: 10px;">Well-suited for real-time control due to parallel sampling</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>Constraint Handling</strong></td>
+                        <td style="padding: 10px;">Explicitly incorporates constraints in optimization</td>
+                        <td style="padding: 10px;">Constraints must be indirectly handled via cost function tuning</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>Robustness to Disturbances</strong></td>
+                        <td style="padding: 10px;">Moderate, depends on solver accuracy and constraint formulation</td>
+                        <td style="padding: 10px;">High, as it evaluates multiple stochastic trajectories in parallel</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>Ease of Implementation</strong></td>
+                        <td style="padding: 10px;">Requires mathematical formulation of constraints and dynamics</td>
+                        <td style="padding: 10px;">More flexible, relies on sampling and cost evaluation</td>
+                    </tr>
+                </table>
                 
+                <script type="text/javascript" async
+                src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+              </script>
+              
+ 
+              
+
                 <h2>Key Features</h2>
                 <ul>
                     <li>Real-time path optimization using MPPI</li>
@@ -123,13 +199,124 @@
                     <li>Software: ROS2, Micro ROS</li>
                 </ul>
                 
+                <section class="project-section">
+                    <h2>MPPI Cost Function Equations</h2>
+                    <p>The Model Predictive Path Integral (MPPI) controller uses a cost function to optimize the trajectory for tracking the desired waypoints. The cost function consists of several components:</p>
+                    
+                    <p>
+                        \[
+                        C_{\text{total}} = C_{\text{cross_track}} + C_{\text{course_angle}} + C_{\text{goal}} +  
+                        C_{\text{velocity}} .
+                        \]
+                      </p>
+
+                    <h3>1. Cross-Track Error Cost</h3>
+                    <div class="equation">
+                        <p>Mathematical Representation:</p>
+                        <p>\[ \text{CTE} = \text{clip}\left(\frac{(x_g - x_i)(y - y_g) - (y_g - y_i)(x - x_g)}{||\vec{v}_1||}\right) \]</p>
+                        <p class="description">Measures the perpendicular distance from the current position to the goal path.</p>
+                    </div>
+
+                    <h3>2. Course Angle Cost</h3>
+                    <div class="equation">
+                        <p>Mathematical Representation:</p>
+                        <p>\[ \text{Course Angle Error} = \text{clip}\left(\arctan2(\dot{y}, \dot{x}) - \arctan2(y_g - y, x_g - x)\right) \]</p>
+                        <p class="description">Calculates the difference between the current course angle and the desired path angle.</p>
+                    </div>
+
+                    <h3>3. Goal Cost</h3>
+                    <div class="equation">
+                        <p>Mathematical Representation:</p>
+                        <p>\[ \text{Goal Cost} = \left|\left|\begin{pmatrix}x \\ y\end{pmatrix} - \begin{pmatrix}x_g \\ y_g\end{pmatrix}\right|\right| \]</p>
+                        <p class="description">Euclidean distance between current position and goal position.</p>
+                    </div>
+
+                    <h3>4. Velocity Cost</h3>
+                    <div class="equation">
+                        <p>Mathematical Representation:</p>
+                        <p>\[ \begin{aligned}
+                        \text{Velocity Cost} = & \max(0, -v_x) \cdot w_{\text{back}} + \\
+                        & v_y^2 \cdot w_{\text{lateral}} + \\
+                        & r^2 \cdot w_{\text{rotational}} + \\
+                        & \max(0, ||\vec{v}|| - v_{\text{max}})^2 \cdot w_{\text{speed}}
+                        \end{aligned} \]</p>
+                        <p class="description">Penalizes backward velocity, lateral velocity, rotational velocity, and exceeding maximum speed.</p>
+                    </div>
+                    
+                    <p><em>Note: Variables represent velocities in body frame, transformed using rotation matrix.</em></p>
+                </section>
+
+                <section class="project-section">
+                    <h2>Learnable Cost Network</h2>
+                    <p>A key innovation in our approach is the integration of a learnable cost function within the MPPI framework. Instead of relying solely on hand-crafted cost functions, we developed a neural network that learns to predict costs directly from state features.</p>
+                    <img src="./data_flow.png" alt="Path Visualization" style="width: 100%; height: auto; max-height: none; object-fit: contain; border-radius: 4px; margin-bottom: 2rem;">
+
+                    <h3>Network Architecture</h3>
+                    <p>The learnable cost network takes as input the same features used in our analytical cost function:</p>
+                    <ul>
+                        <li>Cross-Track Error (CTE)</li>
+                        <li>Course Angle Error (CAE)</li>
+                        <li>Goal position error</li>
+                        <li>Velocity components (forward, lateral, rotational)</li>
+                    </ul>
+                    
+                    <p>These features are processed through a neural network with 3 hidden layers to produce a scalar cost value that can be directly used by the MPPI algorithm.</p>
+                    
+                    <div class="equation">
+                        <p>The network can be represented as:</p>
+                        <p>\[ C_{\text{network}}(\text{CTE}, \text{CAE}, \text{Goal Error}, \vec{v}) = f_{\theta}(\text{features}) \]</p>
+                        <p class="description">Where \(f_{\theta}\) is the neural network with parameters \(\theta\).</p>
+                    </div>
+                    
+                    <h3>Training Process</h3>
+                    <p>The training of the cost network follows a two-stage approach:</p>
+                    
+                    <h4>Stage 1: Initialization with Analytical Cost</h4>
+                    <p>Initially, the network is trained to mimic our analytical cost function:</p>
+                    <div class="equation">
+                        <p>\[ \mathcal{L}_{\text{init}}(\theta) = \mathbb{E}_{\text{states}} \left[ (C_{\text{network}}(\text{features}) - C_{\text{analytical}}(\text{features}))^2 \right] \]</p>
+                        <p class="description">This ensures the network starts with a reasonable cost function that captures the basic navigation objectives.</p>
+                    </div>
+                    
+                    <h4>Stage 2: Refinement with Expert Data</h4>
+                    <p>The network is further refined using data collected from expert demonstrations:</p>
+                    <ul>
+                        <li>Expert trajectories are recorded from skilled human operators navigating the vessel</li>
+                        <li>States along expert trajectories are assigned lower costs</li>
+                        <li>Randomly sampled states or states from suboptimal trajectories are assigned higher costs</li>
+                    </ul>
+                    
+                    <div class="equation">
+                        <p>The refinement loss function is:</p>
+                        <p>\[ \mathcal{L}_{\text{expert}}(\theta) = \mathbb{E}_{\text{expert}} \left[ C_{\text{network}}(\text{features}) \right] - \mathbb{E}_{\text{non-expert}} \left[ C_{\text{network}}(\text{features}) \right] + \lambda \cdot \text{margin} \]</p>
+                        <p class="description">This contrastive approach encourages the network to assign lower costs to expert-like states and higher costs to non-expert states.</p>
+                    </div>
+                    
+                    <h3>Integration with MPPI</h3>
+                    <p>The learned cost network is integrated into the MPPI framework by replacing or complementing the analytical cost function:</p>
+                    
+                    <div class="equation">
+                        <p>\[ C_{\text{total}} = \alpha \cdot C_{\text{analytical}} + (1 - \alpha) \cdot C_{\text{network}} \]</p>
+                        <p class="description">Where \(\alpha\) is a weighting parameter that can be adjusted to balance the analytical and learned components.</p>
+                    </div>
+                    
+                    <h3>Advantages</h3>
+                    <p>This learnable cost approach offers several benefits:</p>
+                    <ul>
+                        <li>Captures nuanced navigation behaviors that are difficult to express analytically</li>
+                        <li>Adapts to specific environmental conditions through expert demonstrations</li>
+                        <li>Reduces the need for manual tuning of cost function parameters</li>
+                        <li>Improves performance in complex scenarios like narrow passages and docking</li>
+                    </ul>
+                </section>
+
                 <h2>Project Gallery</h2>
                 <div class="project-gallery">
-                    <img src="./gallery1.jpg" alt="Gallery Image 1" class="gallery-image">
-                    <img src="./gallery2.jpg" alt="Gallery Image 2" class="gallery-image">
+                    <img src="./path.png" alt="Path Visualization" style="width: 100%; height: auto; max-height: none; object-fit: contain; border-radius: 4px; margin-bottom: 2rem;">
+                    <!-- <img src="./gallery2.jpg" alt="Gallery Image 2" class="gallery-image"> -->
                     <!-- Add more images as needed -->
                 </div>
-                
+
                 <h2>Links</h2>
                 <p>
                     <a href="https://youtu.be/lidJ2G9E-nc" class="btn" target="_blank">View Demo</a>

@@ -12,6 +12,16 @@ const projects = [
     },
     {
         id: 2,
+        title: "Docking of Autonomous Surface Vehicles",
+        description: "Developing autonomous docking capabilities for surface vessels using learning-based methods and model predictive control.",
+        image: "./dock_asv.png",
+        category: "project",
+        tags: ["Autonomous Systems", "Machine Learning", "Control Theory"],
+        demoLink: "#",
+        codeLink: "https://github.com/Akash7736/mppi_docking"
+    },
+    {
+        id: 3,
         title: "Project SOOKSHMA",
         description: "SOOKSHMA is a mini Autonomous Surface Vehicle (ASV) developed by the Marine Autonomous Vehicles Lab (MAVLAB), IIT Madras for easy deployment for research purposes.",
         image: "./sookshma.png",
@@ -21,9 +31,9 @@ const projects = [
         codeLink: "https://github.com/Akash7736/sookshma"
     },
     {
-        id: 3,
+        id: 4,
         title: "Njord Challenge 2023",
-        description: "Njord Challenge 2023 is a competiton organized by Norwegian University of Science and Technology (NTNU). There are certain tasks such as maneuvering, docking and collision avoidance. to be performed by the autonomous surface vehicle.",
+        description: "Njord Challenge 2023 is a competiton organized by Norwegian University of Science and Technology (NTNU). There are certain tasks such as maneuvering, docking and collision avoidance. to be performed by the autonomous surface vehicle. Team Aritra from IIT Madras won 3 rd place in the 2023 challenge.",
         image: "./Njord_Challenge.jpg",
         category: "software",
         tags: ["Catamaran", "ROS1", "rosserial", "yolov8", "APF", "Lidar", "Stereo Vision"],
@@ -31,7 +41,7 @@ const projects = [
         codeLink: "#"
     },
     {
-        id: 4,
+        id: 5,
         title: "Ultra Wide Band Indoor Localization",
         description: "Ultra Wide Band Indoor Localization is a project to localize the position of the autonomous surface vehicle using the Ultra Wide Band (UWB) technology.",
         image: "./uwb.jpg",
@@ -41,9 +51,9 @@ const projects = [
         codeLink: "https://github.com/Akash7736/UWB"
     },
     {
-        id: 5,
+        id: 6,
         title: "Virtual Robotx Challenge 2023",
-        description: "Virtual Roborx Challenge 2023 is a competiton organized by Roborx, IIT Madras. There are certain tasks such as maneuvering, docking and collision avoidance. to be performed by the autonomous surface vehicle.",
+        description: "Virtual Roborx Challenge 2023 is a competiton organized by Robonation, USA. There are certain tasks such as station keeping, waypoint following, perception, acoustic tracking and scan, dock, deliver. to be performed by the WAMV vessel simulation in Gazebo. Team Aritra from IIT Madras won 1 st place globally in the 2023 competition outperforming 33 teams from across the world.",
         image: "./vrx.png",
         category: "software",
         tags: ["Catamaran", "ROS1", "rosserial", "yolov8", "APF", "Lidar", "Stereo Vision"],
@@ -51,7 +61,7 @@ const projects = [
         codeLink: "#"
     },
     {
-        id: 6,
+        id: 7,
         title: "OMAE Conference 2024 Singapore",
         description: "43rd International Conference on Ocean, Offshore and Arctic Engineering - OMAE 2024 by American Society of Mechanical Engineers (ASME)",
         image: "./omae24.jpg",
@@ -61,7 +71,7 @@ const projects = [
         codeLink: "#"
     },
     {
-        id: 7,
+        id: 8,
         title: "IEEE Oceans 2024 Halifax Canada",
         description: "The OCEANS 2024 Halifax conference is for global maritime professionals to learn, innovate and lead in the protection and utilization of the world's largest natural resource – our OCEANS..",
         image: "./ieeeoceans24.png",
@@ -71,7 +81,7 @@ const projects = [
         codeLink: "#"
     },
     {
-        id: 8,
+        id: 9,
         title: "IEEE Underwater Technology Conference 2025 Taiwan",
         description: "The Underwater Technology (UT) symposium, one of the IEEE Oceanic Engineering Society's premier events, has been at the forefront of technological advancements in the underwater field for the past 27 years.",
         image: "./ut25.jpeg",
@@ -79,7 +89,8 @@ const projects = [
         tags: ["ROS2", "Micro ROS", "Jetson nano", "SBG", "UWB"],
         demoLink: "#",
         codeLink: "#"
-    }
+    },
+
 ];
 
 // Publication Data
@@ -148,13 +159,22 @@ function renderProjects(projectsList) {
             // Make the entire card clickable
             projectCard.addEventListener('click', () => {
                 switch (project.id) {
-                    case 2: // Assuming ID 2 is for Project SOOKSHMA
+                    case 1: // MPPI Controller
+                        window.location.href = 'project-details.html';
+                        break;
+                    case 2: // Docking of ASV
+                        window.location.href = 'docking-asv-details.html';
+                        break;
+                    case 3: // Project SOOKSHMA
                         window.location.href = 'sookshma-details.html';
                         break;
-                    case 4: // Assuming ID 4 is for Ultra Wide Band Indoor Localization
+                    case 4: // Njord Challenge
+                        window.location.href = 'njord-challenge-details.html';
+                        break;
+                    case 5: // Ultra Wide Band Indoor Localization
                         window.location.href = 'uwb-localization-details.html';
                         break;
-                    case 5: // Assuming ID 5 is for Virtual RobotX Challenge 2023
+                    case 6: // Virtual RobotX Challenge 2023
                         window.location.href = 'vrx-challenge-details.html';
                         break;
                     default:
