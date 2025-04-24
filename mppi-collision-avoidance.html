@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-agent Collision Avoidance of ASVs using MPPI</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <style>
+        .project-details-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .project-title-section {
+            flex: 1;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .project-image-large {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-item {
+            background-color: var(--gray);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .project-section {
+            margin-bottom: 2rem;
+        }
+        
+        .project-section h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .task-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 4px;
+            margin: 1rem 0;
+            max-height: none;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .equation {
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-background"></div>
+        <div class="header-content container">
+            <h1 class="header-title">Akash Vijayakumar's Project Portfolio</h1>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container container">
+            <a href="index.html" class="logo">Portfolio</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#conferences">Conferences</a></li>
+                <li><a href="index.html#publications">Publications</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="project-details-container">
+            <a href="index.html#projects" class="back-button">← Back to Projects</a>
+            
+            <div class="project-header">
+                <div class="project-title-section">
+                    <h1>Multi-agent Collision Avoidance of ASVs using MPPI</h1>
+                    <div class="project-meta">
+                        <span class="project-meta-item">Autonomous Systems</span>
+                        <span class="project-meta-item">Control Theory</span>
+                        <span class="project-meta-item">Multi-agent Systems</span>
+                        <span class="project-meta-item">Path Planning</span>
+                    </div>
+                </div>
+            </div>
+            
+            <img src="./colavo_mppi_real.png" alt="Multi-agent Collision Avoidance" class="project-image-large">
+            
+            <div class="project-content">
+                <section class="project-section">
+                    <h2>Project Overview</h2>
+                    <p>This project implements a multi-agent control system for autonomous marine vehicles using Model Predictive Path Integral (MPPI) control. The system is designed to handle both real and simulated vessels in various scenarios including social navigation and goal-directed navigation while avoiding collisions with other vessels and static obstacles.</p>
+                    
+                    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
+                        <iframe 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                            src="https://www.youtube.com/embed/fZrkL9N7yTU" 
+                            title="Multi-agent Collision Avoidance of ASVs using MPPI" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+                
+                <section class="project-section">
+                    <h2>System Architecture</h2>
+                    <p>The system consists of several key components:</p>
+                    <ol>
+                        <li><strong>MPPI Controller:</strong> The core control algorithm that generates optimal control actions</li>
+                        <li><strong>Dynamics Models:</strong> Mathematical models that predict how vessels move in response to control inputs</li>
+                        <li><strong>Objective Functions:</strong> Cost functions that define desired behaviors for different agent types</li>
+                        <li><strong>Simulation Environment:</strong> A physics-based environment for testing control strategies</li>
+                    </ol>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Key Components</h2>
+                    
+                    <h3>MPPI Controller (MPPIPlanner)</h3>
+                    <p>The MPPIPlanner class implements a multi-agent Model Predictive Path Integral controller that handles multiple agents simultaneously. It coordinates the planning for all agents in the system.</p>
+                    
+                    <p>Key features:</p>
+                    <ul>
+                        <li>Handles multiple heterogeneous agents</li>
+                        <li>Supports both agent-specific costs and configuration costs for inter-agent interactions</li>
+                        <li>Generates trajectories that consider the predicted behaviors of other agents</li>
+                    </ul>
+                    
+                    <h3>Dynamics Models</h3>
+                    <p>The project implements a learnable dynamics model for marine vehicles:</p>
+                    
+                    <h4>LearnableRoboatDynamics</h4>
+                    <p>This model represents an underactuated vessel with two control inputs (throttle and steering). The dynamics are governed by the following equations:</p>
+                    
+                    <div class="equation">
+                        <p>\[ M\dot{\nu} + D\nu = \tau \]</p>
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>$M$ is the inertia matrix</li>
+                        <li>$D$ is the damping matrix</li>
+                        <li>$\tau$ is the control input vector</li>
+                        <li>$\nu$ is the velocity vector in the body frame $[u, v, r]$</li>
+                    </ul>
+                    
+                    <p>The specific equations used in the implementation are:</p>
+                    <div class="equation">
+                        <p>\begin{align}
+                        u_{dot} &= \frac{throttle \cdot thrust\_coef - d_{11} \cdot u}{m_{rb} - X_{du}} \\
+                        v_{dot} &= \frac{-d_{22} \cdot v}{m_{rb} - Y_{dv}} \\
+                        r_{dot} &= \frac{steering \cdot steer\_coef - d_{33} \cdot r}{I_{z\_rb} - N_{dr}}
+                        \end{align}</p>
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>$u, v, r$ are the surge, sway, and yaw velocities</li>
+                        <li>$d_{11}, d_{22}, d_{33}$ are the damping coefficients</li>
+                        <li>$m_{rb}, I_{z\_rb}$ are the rigid body mass and moment of inertia</li>
+                        <li>$X_{du}, Y_{dv}, N_{dr}$ are the added mass terms</li>
+                        <li>$thrust\_coef, steer\_coef$ are the control effectiveness parameters</li>
+                    </ul>
+                    
+                    <h3>Objective Functions</h3>
+                    <p>The project uses two main objective functions:</p>
+                    
+                    <h4>RoboatObjective</h4>
+                    <p>General cost function for autonomous surface vessels.</p>
+                    
+                    <p>Components:</p>
+                    <ul>
+                        <li><strong>Goal cost:</strong> Penalizes distance to the goal
+                            <div class="equation">
+                                <p>\[ C_{goal} = \|positions - goals\|_2 \cdot w_{goal} \]</p>
+                            </div>
+                        </li>
+                        
+                        <li><strong>Heading to goal cost:</strong> Encourages the vessel to face toward the goal
+                            <div class="equation">
+                                <p>\[ C_{heading} = \theta_{error}^2 \cdot w_{heading} \]</p>
+                            </div>
+                            <p>where $\theta_{error}$ is the angle between the vessel's heading and the direction to the goal.</p>
+                        </li>
+                        
+                        <li><strong>Velocity cost:</strong> Penalizes inefficient motion
+                            <div class="equation">
+                                <p>\begin{align}
+                                C_{vel} &= C_{back} + C_{lat} + C_{rot} + C_{max} \\
+                                C_{back} &= \max(0, -v_{forward}) \cdot w_{back} \\
+                                C_{lat} &= v_{lateral}^2 \cdot w_{lat} \\
+                                C_{rot} &= r^2 \cdot w_{rot} \\
+                                C_{max} &= \max(0, \|v\| - v_{max})^2 \cdot w_{max}
+                                \end{align}</p>
+                            </div>
+                        </li>
+                        
+                        <li><strong>Static obstacle cost:</strong> Penalizes proximity to obstacles
+                            <div class="equation">
+                                <p>\[ C_{obstacle} = \begin{cases}
+                                w_{obstacle} \cdot \exp\left(\frac{margin - d_{obstacle}}{margin}\right) & \text{if } d_{obstacle} < margin \\
+                                0 & \text{otherwise}
+                                \end{cases} \]</p>
+                            </div>
+                            <p>where $d_{obstacle}$ is the distance to the nearest obstacle.</p>
+                        </li>
+                    </ul>
+                    
+                    <h4>SocialNavigationObjective</h4>
+                    <p>Cost function for multi-agent scenarios where vessels need to navigate while respecting social norms.</p>
+                    
+                    <p>Components:</p>
+                    <ul>
+                        <li><strong>Collision avoidance cost:</strong> Penalizes proximity to other agents
+                            <div class="equation">
+                                <p>\[ C_{collision} = \begin{cases}
+                                w_{collision} \cdot \exp\left(\frac{margin - d_{agent}}{margin}\right) & \text{if } d_{agent} < margin \\
+                                0 & \text{otherwise}
+                                \end{cases} \]</p>
+                            </div>
+                            <p>where $d_{agent}$ is the distance to the nearest agent.</p>
+                        </li>
+                        
+                        <li><strong>Rule-based navigation cost:</strong> Implements maritime navigation rules
+                            <ul>
+                                <li><strong>Head-on rule:</strong> When two vessels approach head-on, both should alter course to starboard</li>
+                                <li><strong>Crossing rule:</strong> When two vessels are crossing, the vessel that has the other on its starboard side should give way</li>
+                                <li><strong>Stand-on rule:</strong> The vessel with right of way should maintain its course and speed</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Implementation Details</h2>
+                    
+                    <h3>MPPI Algorithm</h3>
+                    <p>The MPPI algorithm works as follows:</p>
+                    <ol>
+                        <li>Generate K random control sequences</li>
+                        <li>Simulate the system forward using the dynamics model for each sequence</li>
+                        <li>Compute the cost for each trajectory</li>
+                        <li>Weight the control sequences based on their costs</li>
+                        <li>Compute a weighted average to get the optimal control</li>
+                    </ol>
+                    
+                    <p>The key equation for updating the control sequence is:</p>
+                    <div class="equation">
+                        <p>\[ u_t = \sum_{k=1}^{K} w^k u_t^k \]</p>
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>$u_t$ is the optimal control at time t</li>
+                        <li>$u_t^k$ is the k-th sampled control at time t</li>
+                        <li>$w^k$ is the weight for the k-th trajectory, computed as:</li>
+                    </ul>
+                    
+                    <div class="equation">
+                        <p>\[ w^k = \frac{\exp(-\frac{1}{\lambda}S(x_0, u^k))}{\sum_{j=1}^{K}\exp(-\frac{1}{\lambda}S(x_0, u^j))} \]</p>
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>$S(x_0, u^k)$ is the cost of the k-th trajectory</li>
+                        <li>$\lambda$ is a temperature parameter</li>
+                    </ul>
+                    
+                    <h3>Dynamics Integration</h3>
+                    <p>The dynamics are integrated using Euler integration:</p>
+                    <div class="equation">
+                        <p>\[ x_{t+1} = x_t + f(x_t, u_t) \cdot dt \]</p>
+                    </div>
+                    
+                    <p>Where:</p>
+                    <ul>
+                        <li>$x_t$ is the state at time t</li>
+                        <li>$u_t$ is the control input at time t</li>
+                        <li>$f(x_t, u_t)$ is the state derivative from the dynamics model</li>
+                        <li>$dt$ is the time step</li>
+                    </ul>
+                    
+                    <h3>Multi-Agent Coordination</h3>
+                    <p>For multi-agent scenarios, the system:</p>
+                    <ol>
+                        <li>Computes individual costs for each agent using RoboatObjective</li>
+                        <li>Computes interaction costs between agents using SocialNavigationObjective</li>
+                        <li>Combines these costs to generate coordinated control actions</li>
+                    </ol>
+                    
+                    <h3>Handling Zero Actions</h3>
+                    <p>A special case in the dynamics model is handling zero actions (when both throttle and steering are zero). In this case, the vessel should gradually come to a stop due to water resistance. This is implemented by:</p>
+                    <ol>
+                        <li>Detecting when actions are close to zero</li>
+                        <li>Applying exponential decay to velocities</li>
+                        <li>Setting velocities below a threshold to exactly zero</li>
+                    </ol>
+                    
+                    <h3>Multi-Agent Initialization</h3>
+                    <p>The system initializes agents in a polygon formation with diagonally opposite goals:</p>
+                    <ol>
+                        <li>Agents are placed equidistantly around a circle</li>
+                        <li>Each agent's goal is set to the diagonally opposite point on the circle</li>
+                        <li>Agents initially face toward the center of the circle</li>
+                    </ol>
+                    <p>This configuration creates a challenging scenario where all agents must navigate through the center while avoiding collisions.</p>
+                    
+                    <img src="./mppi_trajectories.png" alt="MPPI Trajectory Samples" class="task-image">
+                </section>
+                
+                <section class="project-section">
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li>Handles multiple heterogeneous agents</li>
+                        <li>Supports both learned and analytical dynamics models</li>
+                        <li>Incorporates social navigation principles and maritime rules (COLREGS)</li>
+                        <li>Scalable to large numbers of vessels (tested with up to 20 vessels)</li>
+                        <li>Robust to sensor noise and prediction uncertainties</li>
+                        <li>Adaptive to dynamic environments and changing vessel behaviors</li>
+                        <li>Real-time performance suitable for embedded marine systems</li>
+                        <li>Provides visualization tools for debugging and analysis</li>
+                    </ul>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Technical Specifications</h2>
+                    <ul>
+                        <li>Platform: Various ASV types with different dynamics models</li>
+                        <li>Sensors: Simulated AIS, radar, and camera systems</li>
+                        <li>Computing: NVIDIA Jetson Xavier NX</li>
+                        <li>Software: ROS2, PyTorch, PyBullet</li>
+                    </ul>
+                </section>
+                
+                <h2>Project Gallery</h2>
+                <div class="project-gallery">
+                    <img src="./collision_scenario1.png" alt="Collision Avoidance Scenario 1" class="gallery-image">
+                    <img src="./collision_scenario2.png" alt="Collision Avoidance Scenario 2" class="gallery-image">
+                    <img src="./collision_scenario3.png" alt="Collision Avoidance Scenario 3" class="gallery-image">
+                </div>
+                
+                <h2>Publications</h2>
+                <ul>
+                    <li>
+                        <strong>Multi-agent Collision Avoidance for Autonomous Surface Vessels using Model Predictive Path Integral Control</strong><br>
+                        A Vijayakumar, A Somayajula<br>
+                        Under Review
+                    </li>
+                </ul>
+                
+                <h2>Future Work</h2>
+                <ul>
+                    <li>Improve computational efficiency for real-time performance</li>
+                    <li>Incorporate uncertainty in dynamics and observations</li>
+                    <li>Extend to more complex scenarios with obstacles and currents</li>
+                </ul>
+                
+                <h2>Links</h2>
+                <p>
+                    <a href="https://youtu.be/example-collision-video" class="btn" target="_blank">View Demo</a>
+                    <a href="https://github.com/Akash7736/asv-collision-avoidance" class="btn" target="_blank">View Code</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>A portfolio showcasing my laboratory projects and technical skills.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#projects">Projects</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#skills">Skills</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/Akash7736">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/akash-vijayakumar/">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/akashvnkm">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Akash Vijayakumar. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="project-details.js"></script>
+</body>
+</html> 

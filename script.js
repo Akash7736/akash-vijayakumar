@@ -1,6 +1,16 @@
 // Project Data
 const projects = [
     {
+        id: 7,
+        title: "Multi-agent Collision Avoidance of ASVs using MPPI",
+        description: "Developing a decentralized collision avoidance system for multiple autonomous surface vessels using Model Predictive Path Integral control.",
+        image: "./mppi_colavo.png",
+        category: "software",
+        tags: ["Multi-agent Systems", "Control Theory", "Path Planning", "COLREGS"],
+        demoLink: "https://www.youtube.com/watch?v=fZrkL9N7yTU",
+        // codeLink: "https://github.com/Akash7736/asv-collision-avoidance"
+    },
+    {
         id: 1,
         title: "Learning based Model Predictive Path Integral Controller for Autonomous Surface Vehicles",
         description: "SOOKSHMA is a mini Autonomous Surface Vehicle (ASV) developed by the Marine Autonomous Vehicles Lab (MAVLAB), IIT Madras for easy deployment for research purposes.",
@@ -17,8 +27,8 @@ const projects = [
         image: "./dock_asv.png",
         category: "project",
         tags: ["Autonomous Systems", "Machine Learning", "Control Theory"],
-        demoLink: "#",
-        codeLink: "https://github.com/Akash7736/mppi_docking"
+        demoLink: "https://youtu.be/example-docking-video",
+        codeLink: "https://github.com/Akash7736/asv-docking"
     },
     {
         id: 3,
@@ -61,16 +71,6 @@ const projects = [
         codeLink: "#"
     },
     {
-        id: 7,
-        title: "OMAE Conference 2024 Singapore",
-        description: "43rd International Conference on Ocean, Offshore and Arctic Engineering - OMAE 2024 by American Society of Mechanical Engineers (ASME)",
-        image: "./omae24.jpg",
-        category: "conference",
-        tags: ["ROS2", "Micro ROS", "Jetson nano", "SBG", "UWB"],
-        demoLink: "#",
-        codeLink: "#"
-    },
-    {
         id: 8,
         title: "IEEE Oceans 2024 Halifax Canada",
         description: "The OCEANS 2024 Halifax conference is for global maritime professionals to learn, innovate and lead in the protection and utilization of the world's largest natural resource – our OCEANS..",
@@ -90,7 +90,16 @@ const projects = [
         demoLink: "#",
         codeLink: "#"
     },
-
+    {
+        id: 10,
+        title: "OMAE Conference 2024 Singapore",
+        description: "43rd International Conference on Ocean, Offshore and Arctic Engineering - OMAE 2024 by American Society of Mechanical Engineers (ASME)",
+        image: "./omae24.jpg",
+        category: "conference",
+        tags: ["ROS2", "Micro ROS", "Jetson nano", "SBG", "UWB"],
+        demoLink: "#",
+        codeLink: "#"
+    },
 ];
 
 // Publication Data
@@ -176,6 +185,9 @@ function renderProjects(projectsList) {
                         break;
                     case 6: // Virtual RobotX Challenge 2023
                         window.location.href = 'vrx-challenge-details.html';
+                        break;
+                    case 7: // Multi-agent Collision Avoidance
+                        window.location.href = 'mppi-collision-avoidance.html';
                         break;
                     default:
                         window.location.href = `project-details.html?id=${project.id}`;
