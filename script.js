@@ -4,7 +4,7 @@ const projects = [
         id: 7,
         title: "Multi-agent Collision Avoidance of ASVs using MPPI",
         description: "Developing a decentralized collision avoidance system for multiple autonomous surface vessels using Model Predictive Path Integral control.",
-        image: "./mppi_colavo.png",
+        image: "./experiment_multi.png",
         category: "software",
         tags: ["Multi-agent Systems", "Control Theory", "Path Planning", "COLREGS"],
         demoLink: "https://www.youtube.com/watch?v=fZrkL9N7yTU",
