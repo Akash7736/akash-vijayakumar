@@ -100,6 +100,16 @@ const projects = [
         demoLink: "#",
         codeLink: "#"
     },
+    {
+        id: 11,
+        title: "Manipulator Project – Robot Mechanical Systems",
+        description: "Course project on modeling and control of a 3-DOF robotic manipulator using MuJoCo, with forward/inverse kinematics and Python-based simulation.",
+        image: "./mujoco_manipulator.png",
+        category: "software",
+        tags: ["Manipulator", "Robot Mechanical Systems", "Robotics", "Control"],
+        demoLink: "#",
+        codeLink: "https://github.com/Akash7736/Project_B51RO_Manipulator"
+    },
 ];
 
 // Publication Data
@@ -188,6 +198,9 @@ function renderProjects(projectsList) {
                         break;
                     case 7: // Multi-agent Collision Avoidance
                         window.location.href = 'mppi-collision-avoidance.html';
+                        break;
+                    case 11: // Manipulator Project - Robot Mechanical Systems
+                        window.location.href = 'manipulator-details.html';
                         break;
                     default:
                         window.location.href = `project-details.html?id=${project.id}`;
@@ -319,7 +332,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Initialize 3D models when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Check if we're on a page with the 3D models section
-    if (document.getElementById('3d-models')) {
+    if (document.getElementById('3d-models') && typeof createModelViewer === 'function') {
         // Create ASV model
         createModelViewer('asv-model', {
             modelType: 'asv',

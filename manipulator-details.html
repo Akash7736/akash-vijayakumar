@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulator Project – Robot Mechanical Systems</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-details-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image-large {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .project-section {
+            margin-bottom: 2rem;
+        }
+        
+        .project-section h2 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .project-meta-item {
+            background-color: var(--gray);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container container">
+            <a href="index.html" class="logo">Portfolio</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Details -->
+    <main>
+        <div class="container">
+            <div class="project-details-container">
+                <h1>Manipulator Project – Robot Mechanical Systems</h1>
+                <img src="./manipulator.png" alt="Manipulator Project" class="project-image-large">
+
+                <section class="project-section">
+                    <h2>Overview</h2>
+                    <p>
+                        This course project, completed as part of the Robot Mechanical Systems course, focuses on the modeling
+                        and control of a planar robotic manipulator. The project explores the full pipeline from defining the
+                        robot in MuJoCo XML to implementing forward and inverse kinematics in Python and running interactive
+                        simulations.
+                    </p>
+                    <p>
+                        The system is built around a 3-DOF manipulator model, where the goal is to accurately position the end-effector
+                        while respecting joint limits and dynamic constraints. The codebase combines analytical kinematics with
+                        physics-based simulation to visualize the manipulator motion and validate the algorithms.
+                    </p>
+                </section>
+
+                <section class="project-section">
+                    <h2>Technical Details</h2>
+                    <div class="project-meta">
+                        <span class="project-meta-item"><strong>Domain:</strong> Robotics &amp; Manipulators</span>
+                        <span class="project-meta-item"><strong>Tools:</strong> Python, MuJoCo</span>
+                        <span class="project-meta-item"><strong>Focus:</strong> Kinematics &amp; Simulation</span>
+                    </div>
+                    <ul>
+                        <li>Manipulator modeled in MuJoCo using XML scene descriptions (<code>main.xml</code>, <code>main_deb.xml</code>).</li>
+                        <li>Forward and inverse kinematics implemented in Python (<code>dim.py</code>, <code>ik.py</code>).</li>
+                        <li>Interactive simulation and visualization driven by <code>run.py</code>.</li>
+                        <li>Mesh assets used to render the manipulator links and environment.</li>
+                    </ul>
+                </section>
+
+                <section class="project-section">
+                    <h2>What I Learned</h2>
+                    <ul>
+                        <li>Formulating forward and inverse kinematics for a multi-DOF manipulator.</li>
+                        <li>Integrating analytical robotics models with a physics-based simulator (MuJoCo).</li>
+                        <li>Designing clean Python modules for robotics experimentation.</li>
+                    </ul>
+                </section>
+
+                <section class="project-section">
+                    <h2>Links</h2>
+                    <p>
+                        <a href="https://github.com/Akash7736/Project_B51RO_Manipulator" class="btn" target="_blank">View Code on GitHub</a>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>A portfolio showcasing my laboratory projects and technical skills.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#projects">Projects</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#skills">Skills</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/Akash7736">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/akash-vijayakumar/">LinkedIn</a></li>
+                        <li><a href="https://twitter.com/akashvnkm">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Akash Vijayakumar. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
