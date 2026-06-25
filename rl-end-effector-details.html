@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RL End-Effector Trajectory Tracking – Franka FR3</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-details-container {
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .project-section h2 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-meta-item {
+            background-color: var(--gray);
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-grid .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .video-grid .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .video-label {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .results-grid img,
+        .figure-full img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #e1e5eb;
+        }
+
+        .figure-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.4rem;
+        }
+
+        .figure-full {
+            margin-top: 1rem;
+        }
+
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.92rem;
+        }
+
+        .metrics-table th {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.6rem 1rem;
+            text-align: left;
+        }
+
+        .metrics-table td {
+            padding: 0.55rem 1rem;
+            border-bottom: 1px solid #e1e5eb;
+        }
+
+        .metrics-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .metrics-table tr:nth-child(even) td {
+            background-color: #f9fafb;
+        }
+
+        .highlight {
+            color: #1a7f37;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .video-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container container">
+            <a href="index.html" class="logo">Portfolio</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Details -->
+    <main>
+        <div class="container">
+            <div class="project-details-container">
+                <h1>RL End-Effector Trajectory Tracking — Franka FR3</h1>
+
+                <!-- Demo Videos -->
+                <section class="project-section">
+                    <h2>Demo Videos</h2>
+                    <div class="video-grid">
+                        <div>
+                            <p class="video-label">SAC MLP Policy</p>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/murCWX683DI" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="video-label">SAC-LSTM Policy</p>
+                            <div class="video-wrapper">
+                                <iframe src="https://www.youtube.com/embed/sweLI3GoRjU" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Overview -->
+                <section class="project-section">
+                    <h2>Overview</h2>
+                    <div class="project-meta">
+                        <span class="project-meta-item"><strong>Domain:</strong> Reinforcement Learning &amp; Robotics</span>
+                        <span class="project-meta-item"><strong>Robot:</strong> Franka FR3 (7-DOF)</span>
+                        <span class="project-meta-item"><strong>Simulator:</strong> MuJoCo</span>
+                        <span class="project-meta-item"><strong>Algorithm:</strong> SAC / SAC-LSTM</span>
+                        <span class="project-meta-item"><strong>Training steps:</strong> 1.2 M</span>
+                    </div>
+                    <p>
+                        A model-free reinforcement learning system that trains two policies — a <strong>Soft Actor-Critic (SAC) MLP</strong>
+                        and a <strong>SAC-LSTM</strong> — to control a 7-DOF Franka FR3 robot arm to track 3D end-effector trajectories
+                        entirely from joint-space observations. No inverse kinematics, no trajectory planner, no robot model.
+                    </p>
+                    <p>
+                        Both policies are trained in MuJoCo simulation with randomised trajectory geometry, observation noise,
+                        and a 3-step action delay to encourage sim-to-real transfer robustness.
+                    </p>
+                </section>
+
+                <!-- Policy Comparison -->
+                <section class="project-section">
+                    <h2>SAC MLP vs SAC-LSTM — Summary</h2>
+                    <div class="figure-full">
+                        <img src="./fig5_comparison.png" alt="SAC MLP vs SAC-LSTM Comparison">
+                        <p class="figure-caption">Policy comparison — SAC MLP vs SAC-LSTM training curves</p>
+                    </div>
+                    <table class="metrics-table" style="margin-top:1.5rem;">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>SAC MLP</th>
+                                <th>SAC-LSTM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Best eval error</td><td>1.15 cm @ 1.04M steps</td><td class="highlight">0.67 cm @ 1.01M steps</td></tr>
+                            <tr><td>Steps to &lt; 2 cm</td><td>580k</td><td class="highlight">260k (2.2× faster)</td></tr>
+                            <tr><td>Steps to &lt; 1 cm</td><td>— (never reached)</td><td class="highlight">720k</td></tr>
+                            <tr><td>Circle SS mean error</td><td>1.97 cm</td><td class="highlight">0.33 cm</td></tr>
+                            <tr><td>Figure-8 SS mean error</td><td>0.94 cm</td><td class="highlight">0.77 cm</td></tr>
+                            <tr><td>Helix SS mean error</td><td>3.37 cm</td><td class="highlight">0.41 cm</td></tr>
+                            <tr><td>Architecture</td><td>MLP 256×3</td><td>MLP 256×3 + LSTM 128-cell</td></tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top:1rem;">
+                        The SAC-LSTM policy uses a 128-cell LSTM layer on top of the MLP actor-critic to exploit temporal context
+                        across the last 50 observation timesteps. This temporal memory enables <strong>2.2× faster convergence</strong>
+                        and a <strong>42% improvement</strong> in steady-state tracking accuracy over the MLP baseline.
+                    </p>
+                </section>
+
+                <!-- SAC-LSTM Results -->
+                <section class="project-section">
+                    <h2>SAC-LSTM Results</h2>
+                    <div class="results-grid">
+                        <div>
+                            <img src="./lstm_fig1_training_progress.png" alt="SAC-LSTM Training Progress">
+                            <p class="figure-caption">Training progress — reaches sub-2 cm at 260k steps, best 0.67 cm at 1.01M steps</p>
+                        </div>
+                        <div>
+                            <img src="./lstm_fig2_trajectory_tracking.png" alt="SAC-LSTM Trajectory Tracking">
+                            <p class="figure-caption">3D trajectory tracking — Circle, Figure-8, Helix</p>
+                        </div>
+                        <div>
+                            <img src="./lstm_fig3_policy_quality.png" alt="SAC-LSTM Policy Quality">
+                            <p class="figure-caption">Policy quality — error profile, cumulative RMSE, joint jerk</p>
+                        </div>
+                        <div>
+                            <img src="./lstm_fig4_robustness.png" alt="SAC-LSTM Robustness">
+                            <p class="figure-caption">Stress test — robustness to obs noise, action noise, delay, trajectory radius</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SAC MLP Results -->
+                <section class="project-section">
+                    <h2>SAC MLP Results</h2>
+                    <div class="results-grid">
+                        <div>
+                            <img src="./fig1_training_progress.png" alt="SAC MLP Training Progress">
+                            <p class="figure-caption">Training progress — best eval 1.15 cm at 1.04M steps</p>
+                        </div>
+                        <div>
+                            <img src="./fig2_trajectory_tracking.png" alt="SAC MLP Trajectory Tracking">
+                            <p class="figure-caption">3D trajectory tracking — Circle, Figure-8, Helix</p>
+                        </div>
+                        <div>
+                            <img src="./fig3_policy_quality.png" alt="SAC MLP Policy Quality">
+                            <p class="figure-caption">Policy quality — error profile, cumulative RMSE, joint jerk</p>
+                        </div>
+                        <div>
+                            <img src="./fig4_robustness.png" alt="SAC MLP Robustness">
+                            <p class="figure-caption">Stress test — stable up to 300ms delay and 25× training noise</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Architecture -->
+                <section class="project-section">
+                    <h2>Neural Network Architecture</h2>
+                    <div class="figure-full">
+                        <img src="./fig6_architecture.png" alt="Neural Network Architecture">
+                        <p class="figure-caption">SAC MLP and SAC-LSTM actor-critic architecture</p>
+                    </div>
+                    <p style="margin-top:1rem;">
+                        <strong>SAC MLP</strong> — single-step feed-forward: obs (39-dim) → Linear 256 → Linear 256 → μ/log σ → tanh → action (7-dim)
+                    </p>
+                    <p>
+                        <strong>SAC-LSTM</strong> — sequence-conditioned: obs window (50×39) → LSTM (39→128) → Linear 256 → Linear 256 → μ/log σ → tanh → action (7-dim).
+                        The LSTM allows the policy to infer velocity, acceleration, and trajectory curvature implicitly without explicit features.
+                    </p>
+                </section>
+
+                <!-- Robustness Highlights -->
+                <section class="project-section">
+                    <h2>Robustness Highlights (SAC-LSTM)</h2>
+                    <table class="metrics-table">
+                        <thead>
+                            <tr><th>Perturbation</th><th>Result</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Observation noise</td><td>100% survival at all noise levels including 0.1 std (50× training noise)</td></tr>
+                            <tr><td>Action noise</td><td>Essentially immune — no degradation up to 0.3 std (30% of action range)</td></tr>
+                            <tr><td>Control delay</td><td>Stable across all delays up to 300 ms; no survival failures</td></tr>
+                            <tr><td>Trajectory radius</td><td>Safe up to 0.28 m (56% beyond training max); cliff at 0.35 m</td></tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Links -->
+                <section class="project-section">
+                    <h2>Links</h2>
+                    <p>
+                        <a href="https://github.com/Akash7736/RL_End_Effector_Tracking" class="btn" target="_blank">View Code on GitHub</a>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>A portfolio showcasing my laboratory projects and technical skills.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html#projects">Projects</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/Akash7736">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/akash-vijayakumar/">LinkedIn</a></li>
+                        <li><a href="https://scholar.google.com/citations?user=53ztiO4AAAAJ&hl=en">Google Scholar</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Akash Vijayakumar. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

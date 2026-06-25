@@ -1,6 +1,16 @@
 // Project Data
 const projects = [
     {
+        id: 12,
+        title: "RL End-Effector Trajectory Tracking — Franka FR3",
+        description: "Model-free SAC and SAC-LSTM policies trained in MuJoCo to control a 7-DOF Franka FR3 arm for 3D trajectory tracking — no IK, no robot model. SAC-LSTM achieves 0.67 cm steady-state error, 2.2× faster than MLP baseline.",
+        image: "./fig5_comparison.png",
+        category: "reinforcement-learning",
+        tags: ["Reinforcement Learning", "SAC", "LSTM", "MuJoCo", "Robotics", "Franka FR3"],
+        demoLink: "https://www.youtube.com/watch?v=sweLI3GoRjU",
+        codeLink: "https://github.com/Akash7736/RL_End_Effector_Tracking"
+    },
+    {
         id: 7,
         title: "Multi-agent Collision Avoidance of ASVs using MPPI",
         description: "Developing a decentralized collision avoidance system for multiple autonomous surface vessels using Model Predictive Path Integral control.",
@@ -201,6 +211,9 @@ function renderProjects(projectsList) {
                         break;
                     case 11: // Manipulator Project - Robot Mechanical Systems
                         window.location.href = 'manipulator-details.html';
+                        break;
+                    case 12: // RL End-Effector Tracking
+                        window.location.href = 'rl-end-effector-details.html';
                         break;
                     default:
                         window.location.href = `project-details.html?id=${project.id}`;
