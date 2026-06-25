@@ -4,7 +4,7 @@ const projects = [
         id: 12,
         title: "RL End-Effector Trajectory Tracking — Franka FR3",
         description: "Model-free SAC and SAC-LSTM policies trained in MuJoCo to control a 7-DOF Franka FR3 arm for 3D trajectory tracking — no IK, no robot model. SAC-LSTM achieves 0.67 cm steady-state error, 2.2× faster than MLP baseline.",
-        image: "./fig5_comparison.png",
+        image: "./rl_end_eff.png",
         category: "reinforcement-learning",
         tags: ["Reinforcement Learning", "SAC", "LSTM", "MuJoCo", "Robotics", "Franka FR3"],
         demoLink: "https://www.youtube.com/watch?v=sweLI3GoRjU",
